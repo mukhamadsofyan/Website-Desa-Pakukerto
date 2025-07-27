@@ -19,4 +19,19 @@ class HomeController extends Controller
 
         return view("LandingPage.home", compact('penduduk','dusun' ,'rw' , 'rt'));
     }
+    public function aduan()
+    {
+        // $penduduk = penduduk::all();
+        return view("LandingPage.aduanwarga");
+    }
+    public function Bansos()
+    {
+        // $penduduk = penduduk::all();
+        return view("LandingPage.penerimaanbansos");
+    }
+    public function Darurat()
+    {
+        // $penduduk = penduduk::all();
+        return view("LandingPage.daruratbencana");
+    }
 }

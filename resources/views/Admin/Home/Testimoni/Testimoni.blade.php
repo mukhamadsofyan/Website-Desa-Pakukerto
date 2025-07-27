@@ -63,6 +63,7 @@
                                                 <th>Keterangan</th>
                                                 <th>Deskripsi Testimonial</th>
                                                 <th>Rating</th>
+                                                <th>Rating</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
