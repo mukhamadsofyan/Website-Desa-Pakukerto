@@ -4117,8 +4117,40 @@ footer .footer-upper .copyright-main .copyright-text {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
 }
 
-.btn-surat
-{
+.btn-surat {
     margin-top: 24px !important;
     padding: 15px 30px !important;
+}
+
+.map-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    /* center on all screens */
+}
+
+.map-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.map-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    /* padding: 16px; */
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        padding: 8px;
+    }
 }
