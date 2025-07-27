@@ -13,4 +13,19 @@ class HomeController extends Controller
         $penduduk = penduduk::all();
         return view("LandingPage.home", compact('penduduk'));
     }
+    public function aduan()
+    {
+        // $penduduk = penduduk::all();
+        return view("LandingPage.aduanwarga");
+    }
+    public function Bansos()
+    {
+        // $penduduk = penduduk::all();
+        return view("LandingPage.penerimaanbansos");
+    }
+    public function Darurat()
+    {
+        // $penduduk = penduduk::all();
+        return view("LandingPage.daruratbencana");
+    }
 }

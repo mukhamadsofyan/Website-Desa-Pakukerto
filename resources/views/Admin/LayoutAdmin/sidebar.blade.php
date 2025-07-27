@@ -107,7 +107,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript: void(0);" class="waves-effect">
+                                <a href="/viewSurat" class="waves-effect">
                                     <i class="fas fa-file-alt"></i>
                                     <span class="badge rounded-pill bg-primary float-end"></span>
                                     <span>Administrasi Persuratan</span>

@@ -177,33 +177,33 @@
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <div class="browse-list">
-                    <a href="course-2.html">
+                    <a href="/persuratan">
                         <i class="fa-solid fa-envelope"></i>
                         <h4>Surat Online</h4>
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="course-2.html">
+                    <a href="/event">
                         <i class="fa-solid fa-bullhorn"></i>
                         <h4>Pengumuman</h4>
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="course-2.html">
+                    <a href="/Aduan">
                         <i class="fa-solid fa-file"></i>
                         <h4>Aduan Warga</h4>
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="course-2.html">
+                    <a href="/Darurat">
                         <i class="fa-solid fa-truck-medical"></i>
-                        <h4>Siaga Ambulan</h4>
+                        <h4>Darurat & Bencana</h4>
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="course-2.html">
-                        <i class="fa-solid fa-house"></i>
-                        <h4>Kependudukan Online</h4>
+                    <a href="/Bansos">
+                        <i class="fa-solid fa-user-check"></i>
+                        <h4>Pengecekan Bansos</h4>
                     </a>
                 </div>
             </div>
