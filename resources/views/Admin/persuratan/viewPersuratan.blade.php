@@ -77,7 +77,7 @@
                                                     <td>
                                                         @if ($item->file_surat)
                                                             <a href="{{ asset('storage/' . $item->file_surat) }}"
-                                                                class="btn btn-sm btn-info" target="_blank">Unduh</a>
+                                                                class="btn btn-sm btn-info" target="_blank"><i class="fa-solid fa-download"></i></a>
                                                         @else
                                                             <span class="text-muted">Belum ada</span>
                                                         @endif
@@ -86,7 +86,8 @@
                                                     </td>
                                                     <td>
                                                         <button class="btn btn-sm btn-danger btn-delete"
-                                                            data-id="{{ $item->id }}">Hapus</button>
+                                                            data-id="{{ $item->id }}"><i
+                                                            class="fa-solid fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -277,7 +278,6 @@
                         reverseButtons: true
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // Lakukan penghapusan, misalnya redirect ke route destroy
                             window.location.href = "/deletepersuratan/" + id;
                         } else if (result.dismiss === Swal.DismissReason.cancel) {
                             swalWithBootstrapButtons.fire(
