@@ -63,6 +63,8 @@ Route::get('/admin', [Home::class, 'homeAdmin'])->name('homeAdmin');
 
 // ----------- PERSURATAN -----------
 Route::get('/viewSurat', [Persuratan::class, 'viewSurat'])->name('viewSuratAdmin');
+Route::get('/deletepersuratan/{id}', [Persuratan::class, 'destroy'])->name('persuratan.destroy');
+
 
 // ----------- BLOG -----------
 Route::get('/blogviewadmin', [AdminBlogController::class, 'BlogView'])->name('admin.blogs.view');

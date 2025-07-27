@@ -25,6 +25,14 @@
                             <div class="cs-title">
                                 <h3>Persuratan</h3>
                             </div>
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                             <div class="accordion md-accordion" id="accordionPersuratan" role="tablist"
                                 aria-multiselectable="true">
                                 <div class="card">

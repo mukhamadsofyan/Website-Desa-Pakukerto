@@ -67,67 +67,40 @@
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
-                                        {{-- <?php $no = 1; ?>
-                                        @foreach ($data as $agenda) --}}
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Ahmad Fauzi</td>
-                                            <td>3517123456789001</td>
-                                            <td>Surat Pengantar SKCK</td>
-                                            <td>
-                                                <a href="{{ asset('storage/surat/Surat_SKCK_AhmadFauzi.docx') }}"
-                                                    class="btn btn-sm btn-info" target="_blank">Unduh</a>
-                                            </td>
-                                            <td>24 Juli 2025</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-danger">Hapus</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Siti Nurhaliza</td>
-                                            <td>3517654321098765</td>
-                                            <td>Surat Keterangan Kelahiran</td>
-                                            <td>
-                                                <a href="{{ asset('storage/surat/Surat_Kelahiran_SitiNurhaliza.docx') }}"
-                                                    class="btn btn-sm btn-info" target="_blank">Unduh</a>
-                                            </td>
-                                            <td>23 Juli 2025</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-danger">Hapus</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Budi Santoso</td>
-                                            <td>3517345678901234</td>
-                                            <td>Surat Izin Keramaian</td>
-                                            <td>
-                                                <a href="{{ asset('storage/surat/Surat_Keramaian_BudiSantoso.docx') }}"
-                                                    class="btn btn-sm btn-info" target="_blank">Unduh</a>
-                                            </td>
-                                            <td>22 Juli 2025</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-danger">Hapus</button>
-                                            </td>
-                                        </tr>
+                                        <tbody>
+                                            @foreach ($permohonan as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->nama_lengkap }}</td>
+                                                    <td>{{ $item->nik }}</td>
+                                                    <td>{{ $item->jenis_surat }}</td>
+                                                    <td>
+                                                        @if ($item->file_surat)
+                                                            <a href="{{ asset('storage/' . $item->file_surat) }}"
+                                                                class="btn btn-sm btn-info" target="_blank">Unduh</a>
+                                                        @else
+                                                            <span class="text-muted">Belum ada</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-danger btn-delete"
+                                                            data-id="{{ $item->id }}">Hapus</button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
-                                        {{-- <?php $no++; ?>
-                                        @endforeach --}}
                                     </table>
+
 
                                 </div>
                             </div>
                         </div> <!-- end col -->
                     </div> <!-- end row -->
-
-
-
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-
-
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row">
@@ -305,7 +278,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Lakukan penghapusan, misalnya redirect ke route destroy
-                            window.location.href = "/deleteagenda/" + id;
+                            window.location.href = "/deletepersuratan/" + id;
                         } else if (result.dismiss === Swal.DismissReason.cancel) {
                             swalWithBootstrapButtons.fire(
                                 "Dibatalkan",

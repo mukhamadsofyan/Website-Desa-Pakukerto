@@ -11,10 +11,10 @@ return new class extends Migration {
             $table->id();
             $table->string('nama_lengkap');
             $table->string('nik');
-            $table->string('jenis_surat'); // bisa juga pakai enum jika ingin dibatasi
-            $table->string('file_surat'); // nama file Word (atau PDF jika nanti disimpan)
-            $table->json('data_lainnya')->nullable(); // untuk simpan data tambahan
-            $table->timestamps(); // created_at dan updated_at
+            $table->string('jenis_surat');
+            $table->string('file_surat');
+            $table->json('data_lainnya')->nullable();
+            $table->timestamps(); 
         });
     }
 
