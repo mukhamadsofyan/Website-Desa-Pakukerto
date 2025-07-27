@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Carbon\Carbon;
 use App\Models\PermohonanSurat;
+use Illuminate\Support\Facades\Validator;
 
 class PersuratanController extends Controller
 {
@@ -82,6 +83,109 @@ class PersuratanController extends Controller
             return redirect()->back()->with('success', 'Permohonan SKCK berhasil dikirim. Silakan tunggu konfirmasi dari admin.');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'Terjadi kesalahan saat membuat surat: ' . $e->getMessage()]);
+        }
+    }
+
+
+    public function submitKematian(Request $request)
+    {
+        try {
+            // Validasi manual agar bisa dd error jika gagal
+            $validator = Validator::make($request->all(), [
+                'nama_pelapor'       => 'required|string|max:255',
+                'nik_pelapor'        => 'required|string',
+                'alamat_pelapor'     => 'required|string|max:255',
+                'status_pelapor'     => 'required|string|max:255',
+                'nama_alm'           => 'required|string|max:255',
+                'nik_alm'            => 'nullable|string',
+                'kk_alm'             => 'nullable|string',
+                'ttl_alm'            => 'required|string|max:255',
+                'jenis_kelamin'      => 'required|string|max:20',
+                'agama'              => 'required|string|max:50',
+                'status_perkawinan'  => 'required|string|max:50',
+                'pekerjaan'          => 'nullable|string|max:100',
+                'alamat_alm'         => 'required|string|max:255',
+                'tanggal_meninggal'  => 'required|date',
+                'tempat_kematian'    => 'required|string|max:255',
+                'sebab_kematian'     => 'required|string|max:255',
+                'keperluan'          => 'required|string|max:255',
+            ]);
+
+            if ($validator->fails()) {
+                dd($validator->errors()); // Debug hanya saat gagal validasi
+            }
+
+            $validatedData = $validator->validated();
+
+            // Cek apakah template tersedia
+            $templateFileName = 'SURAT KETERANGAN KEMATIAN.docx';
+            $templatePath = storage_path('app/templates/' . $templateFileName);
+
+            if (!file_exists($templatePath)) {
+                return back()->withErrors(['template' => 'Template surat tidak ditemukan!']);
+            }
+
+            // Load dan isi template
+            $templateProcessor = new TemplateProcessor($templatePath);
+            $templateProcessor->setValue('nama_pelapor', $validatedData['nama_pelapor']);
+            $templateProcessor->setValue('nik_pelapor', $validatedData['nik_pelapor']);
+            $templateProcessor->setValue('alamat_pelapor', $validatedData['alamat_pelapor']);
+            $templateProcessor->setValue('status_pelapor', $validatedData['status_pelapor']);
+            $templateProcessor->setValue('nama_alm', $validatedData['nama_alm']);
+            $templateProcessor->setValue('nik_alm', $validatedData['nik_alm'] ?? '-');
+            $templateProcessor->setValue('kk_alm', $validatedData['kk_alm'] ?? '-');
+            $templateProcessor->setValue('ttl_alm', $validatedData['ttl_alm']);
+            $templateProcessor->setValue('jenis_kelamin', $validatedData['jenis_kelamin']);
+            $templateProcessor->setValue('agama', $validatedData['agama']);
+            $templateProcessor->setValue('status_perkawinan', $validatedData['status_perkawinan']);
+            $templateProcessor->setValue('pekerjaan', $validatedData['pekerjaan'] ?? '-');
+            $templateProcessor->setValue('alamat_alm', $validatedData['alamat_alm']);
+            $templateProcessor->setValue('tanggal_meninggal', Carbon::parse($validatedData['tanggal_meninggal'])->translatedFormat('l, d F Y'));
+            $templateProcessor->setValue('tempat_kematian', $validatedData['tempat_kematian']);
+            $templateProcessor->setValue('sebab_kematian', $validatedData['sebab_kematian']);
+            $templateProcessor->setValue('keperluan', $validatedData['keperluan']);
+            $templateProcessor->setValue('tgl_surat', Carbon::now()->translatedFormat('d F Y'));
+
+            // Simpan file surat
+            $outputFileName = 'Surat_Kematian_' . time() . '.docx';
+            $savePath = storage_path('app/public/surat/' . $outputFileName);
+
+            if (!file_exists(dirname($savePath))) {
+                mkdir(dirname($savePath), 0775, true);
+            }
+
+            $templateProcessor->saveAs($savePath);
+
+            // Simpan data ke database
+            PermohonanSurat::create([
+                'nama_lengkap' => $validatedData['nama_alm'],
+                'nik'          => $validatedData['nik_alm'],
+                'jenis_surat'  => 'Kematian',
+                'file_surat'   => 'surat/' . $outputFileName,
+                'data_lainnya' => json_encode([
+                    'pelapor' => [
+                        'nama'   => $validatedData['nama_pelapor'],
+                        'nik'    => $validatedData['nik_pelapor'],
+                        'alamat' => $validatedData['alamat_pelapor'],
+                        'status' => $validatedData['status_pelapor'],
+                    ],
+                    'kk_alm'            => $validatedData['kk_alm'],
+                    'ttl_alm'           => $validatedData['ttl_alm'],
+                    'jenis_kelamin'     => $validatedData['jenis_kelamin'],
+                    'agama'             => $validatedData['agama'],
+                    'status_perkawinan' => $validatedData['status_perkawinan'],
+                    'pekerjaan'         => $validatedData['pekerjaan'],
+                    'alamat_alm'        => $validatedData['alamat_alm'],
+                    'tanggal_meninggal' => $validatedData['tanggal_meninggal'],
+                    'tempat_kematian'   => $validatedData['tempat_kematian'],
+                    'sebab_kematian'    => $validatedData['sebab_kematian'],
+                    'keperluan'         => $validatedData['keperluan'],
+                ]),
+            ]);
+
+            return redirect()->back()->with('success', 'Permohonan Surat Keterangan Kematian berhasil dikirim.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
         }
     }
 }

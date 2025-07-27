@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('testimonials', function (Blueprint $table) {
+        Schema::create('aduans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('keterangan');
-            $table->string('deskripsi_testimonial');
-            $table->integer('rating');
-            $table->integer('status')->default(0); // 0 = pending, 1 = acc , 2 = tolak
-            $table->string('foto_testimonial')->nullable();
+            $table->string('no_hp');
+            $table->string('kategori');
+            $table->string('isi');
+            $table->integer('status')->default(0); //0 = pending, 1 = acc, 2 = tolak
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('aduans');
     }
 };

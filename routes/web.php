@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Aduan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\HomeController;
 use App\Http\Controllers\Landing\BlogController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\Admin\strukturaldesa;
 
 // ----------- HOME -----------
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/Aduan', [HomeController::class, 'aduan'])->name('aduan');
+Route::get('/Aduanwarga', [HomeController::class, 'aduan'])->name('aduan');
 Route::get('/Bansos', [HomeController::class, 'Bansos'])->name('Bansos');
 Route::get('/Darurat', [HomeController::class, 'Darurat'])->name('Darurat');
 
@@ -48,6 +49,8 @@ Route::get('/umkm/detail', [UmkmController::class, 'ViewDetailUmkm'])->name('Vie
 // ----------- PERSURATAN -----------
 Route::get('/persuratan', [PersuratanController::class, 'viewpersuratan'])->name('persuratan');
 Route::post('/submit-skck', [PersuratanController::class, 'submitSkck'])->name('submit.skck');
+Route::post('/submit-keterangan-kematian', [PersuratanController::class, 'submitKematian'])->name('submit.kematian');
+
 
 // ----------- EVENT -----------
 Route::get('/event', [EventController::class, 'viewevent'])->name('event');
@@ -60,9 +63,13 @@ Route::get('/event/eventdetail', [EventController::class, 'vieweventdetail'])->n
 
 // ----------- DASHBOARD -----------
 Route::get('/admin', [Home::class, 'homeAdmin'])->name('homeAdmin');
+// ----------- ADUAN -----------
+Route::get('/viewAduan', [Aduan::class, 'viewaduan'])->name('viewaduan');
+Route::post('/storeaduan', [HomeController::class, 'storeaduan'])->name('aduan.store');
+Route::post('/acceptaduan/{id}', [Aduan::class, 'acceptAduan'])->name('acceptaduan');
 
 // ----------- PERSURATAN -----------
-Route::get('/viewSurat', [Persuratan::class, 'viewSurat'])->name('viewSuratAdmin');
+Route::get('/viewSurat', [Persuratan::class, 'viewSurat'])->name('persuratan.view');
 Route::get('/deletepersuratan/{id}', [Persuratan::class, 'destroy'])->name('persuratan.destroy');
 
 
@@ -82,7 +89,28 @@ Route::post('/updatesambutan/{id}', [Home::class, 'updatesambutan']);
 // ----------- TOTAL PENDUDUK -----------
 Route::get('/Penduduk', [Home::class, 'Penduduk'])->name('viewPenduduk');
 Route::get('/editpenduduk/{id}', [Home::class, 'editpenduduk'])->name('editpenduduk');
+Route::get('/tambahpenduduk', [Home::class, 'tambahpenduduk'])->name('tambahpenduduk');
 Route::post('/updatependuduk/{id}', [Home::class, 'updatependuduk']);
+Route::post('/storependuduk', [Home::class, 'storependuduk']);
+
+// ----------- RT & RW -----------
+Route::get('/Rt', [Home::class, 'Rt'])->name('viewRt');
+Route::get('/tambahrt', [Home::class, 'tambahrt'])->name('viewtambahrt');
+Route::post('/storert', [Home::class, 'storert']);
+Route::get('/editrt/{id}', [Home::class, 'editrt'])->name('editrt');
+Route::post('/updatert/{id}', [Home::class, 'updatert']);
+Route::get('/deletert/{id}', [Home::class, 'deletert']);
+
+Route::get('/Rw', [Home::class, 'Rw'])->name('viewRw');
+Route::get('/tambahrw', [Home::class, 'tambahrw'])->name('viewtambahrw');
+Route::post('/storerw', [Home::class, 'storerw']);
+Route::get('/editrw/{id}', [Home::class, 'editrw'])->name('editrw');
+Route::post('/updaterw/{id}', [Home::class, 'updaterw']);
+Route::get('/deleterw/{id}', [Home::class, 'deleterw']);
+
+
+
+
 
 // ----------- AGENDA DESA -----------
 Route::get('/Agenda', [AgendaDesa::class, 'AgendaDesa'])->name('viewAgendaDesa');
@@ -107,3 +135,10 @@ Route::post('/insertstruktural', [strukturaldesa::class, 'insertstruktural']);
 Route::get('/editstruktural/{id}', [strukturaldesa::class, 'editstruktural'])->name('editstruktural');
 Route::post('/updatestruktural/{id}', [strukturaldesa::class, 'updatestruktural']);
 Route::get('/deletestruktural/{id}', [strukturaldesa::class, 'deletestruktural']);
+Route::post('/accepttestimonial/{id}', [Home::class, 'accepttestimonial']);
+Route::post('/rejecttestimonial/{id}', [Home::class, 'rejecttestimonial']);
+
+// ----------- SEJARAH DESA -----------
+Route::get('/sejarahdesa', [Home::class, 'Penduduk'])->name('viewPenduduk');
+Route::get('/editpenduduk/{id}', [Home::class, 'editpenduduk'])->name('editpenduduk');
+Route::post('/updatependuduk/{id}', [Home::class, 'updatependuduk']);

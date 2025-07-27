@@ -123,15 +123,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-3 row">
-                                            <label for="blog-image-input" class="col-md-2 col-form-label">Foto
-                                                Testimonial</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="file" id="blog-image-input"
-                                                    accept="image/*" name="foto_testimonial">
-                                                <div class="form-text"> Unggah gambar Testi</div>
-                                            </div>
-                                        </div>
+                                       
 
                                         <div class="d-flex flex-wrap gap-3 mt-3">
                                             <button type="submit"

@@ -50,6 +50,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">DATA KEPENDUDUKAN DESA PAKUKERTO</h4>
+                                    <a href="/tambahpenduduk" class="btn btn-primary">Tambah Data</a>
                                     {{-- <p class="card-title-desc">DataTables has most features enabled by
                                         default, so all you need to do to use it with your own tables is to call
                                         the construction function: <code>$().DataTable();</code>. --}}
@@ -59,12 +60,16 @@
                                         <thead>
                                             <tr>
                                                 <th>NO</th>
-                                                <th>Total Dusun</th>
-                                                <th>Total RT</th>
-                                                <th>Total RW</th>
-                                                <th>Laki Laki</th>
-                                                <th>Perempuan</th>
-                                                <th>Total Penduduk</th>
+                                                <th>Nama</th>
+                                                <th>Alamat</th>
+                                                <th>Umur</th>
+                                                <th>Dusun</th>
+                                                <th>Rw / Rt</th>
+                                                <th>Pendidikan</th>
+                                                <th>Pekerjaan</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Agama</th>
+                                                <th>Status Perkawinan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -72,12 +77,16 @@
                                         @foreach ($datapenduduk as $penduduk)
                                             <tr>
                                                 <td>{{ $no }}</td>
-                                                <td>{{ $penduduk->total_dusun }}</td>
-                                                <td>{{ $penduduk->total_rt }}</td>
-                                                <td>{{ $penduduk->total_rw }}</td>
-                                                <td>{{ $penduduk->laki_laki }}</td>
-                                                <td>{{ $penduduk->perempuan }}</td>
-                                                <td>{{ $penduduk->total_penduduk }}</td>
+                                                <td>{{ $penduduk->nama }}</td>
+                                                <td>{{ $penduduk->alamat }}</td>
+                                                <td>{{ $penduduk->umur }}</td>
+                                                <td>{{ $penduduk->dusun }}</td>
+                                                <td>{{ $penduduk->rw->no_rw }} / {{ $penduduk->rt->no_rt }}</td>
+                                                <td>{{ $penduduk->pendidikan }}</td>
+                                                <td>{{ $penduduk->pekerjaan }}</td>
+                                                <td>{{ $penduduk->jenis_kelamin }}</td>
+                                                <td>{{ $penduduk->agama }}</td> 
+                                                <td>{{ $penduduk->status_perkawinan }}</td>
                                                 <td>
                                                     <a href="/editpenduduk/{{ $penduduk->id }}"
                                                         class="btn btn-warning"><i

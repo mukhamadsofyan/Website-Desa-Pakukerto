@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('testimonials', function (Blueprint $table) {
+        Schema::create('rts', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('keterangan');
-            $table->string('deskripsi_testimonial');
-            $table->integer('rating');
-            $table->integer('status')->default(0); // 0 = pending, 1 = acc , 2 = tolak
-            $table->string('foto_testimonial')->nullable();
+            $table->string('dusun');
+            $table->string('no_rt');
+            $table->unsignedBigInteger('rw_id');
             $table->timestamps();
+            $table->foreign('rw_id')->references('id')->on('rws')->onDelete('cascade');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('rts');
     }
 };

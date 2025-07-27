@@ -13,13 +13,7 @@ class penduduk extends Seeder
      */
     public function run(): void
     {
-        DB::table('penduduks')->insert([
-            'total_dusun' => '5',
-            'total_rt' => '5',
-            'total_rw' => '5',
-            'laki_laki' => '5',
-            'perempuan' => '5',
-            'total_penduduk' => '5',
-        ]);
+      
+           
     }
 }

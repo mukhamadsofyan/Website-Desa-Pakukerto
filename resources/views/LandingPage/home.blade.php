@@ -138,28 +138,28 @@
     <section class="counter">
 
         <div class="container">
-            @foreach ($penduduk as $datapenduduk)
+          
             <div class="counter-wrap wow fadeInUp">
                 <div class="content d-flex justify-content-between">
                     <div class="value-pin">
-                        <span class="countfect value" data-num="{{ $datapenduduk->total_penduduk }}"></span>
+                        <span class="countfect value" data-num="{{$penduduk}}"></span>
                         <h5>Penduduk</h5>
                     </div>
                     <div class="value-pin">
-                        <span class="countfect value" data-num="{{ $datapenduduk->total_dusun }}"></span>
+                        <span class="countfect value" data-num="{{$dusun}}"></span>
                         <h5>Dusun</h5>
                     </div>
                     <div class="value-pin">
-                        <span class="countfect value" data-num="{{ $datapenduduk->total_rt }}"></span>
+                        <span class="countfect value" data-num="{{$rt}}"></span>
                         <h5>RT</h5>
                     </div>
                     <div class="value-pin">
-                        <span class="countfect value" data-num="{{ $datapenduduk->total_rw }}"></span>
+                        <span class="countfect value" data-num="{{$rw}}"></span>
                         <h5>RW</h5>
                     </div>
                 </div>
             </div>
-            @endforeach
+           
         </div>
     </section>
     <!-- End Counter main -->
@@ -189,7 +189,7 @@
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="/Aduan">
+                    <a href="/Aduanwarga">
                         <i class="fa-solid fa-file"></i>
                         <h4>Aduan Warga</h4>
                     </a>
@@ -887,7 +887,7 @@
     <!--  Newsletter start -->
 
     <!--  Newsletter end -->
-
+    
     <!-- Footer starts -->
     @include('LandingPage.Layout.footer')
     <!-- Footer ends -->

@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="en">
 
-@include('Admin.LayoutAdmin.head')
 
+<!-- Mirrored from themesbrand.com/minible/layouts/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Jun 2025 07:29:48 GMT -->
+
+@include('Admin.LayoutAdmin.head')
 
 <body>
 
@@ -18,7 +20,6 @@
         <!-- Left Sidebar End -->
 
 
-
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
@@ -27,106 +28,85 @@
             <div class="page-content">
                 <div class="container-fluid">
 
-                    <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0">Datatables</h4>
-
+                                <h4 class="mb-0">Form Tambah Data Rw</h4>
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                        <li class="breadcrumb-item active">Datatables</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Blog</a></li>
+                                        <li class="breadcrumb-item active">Tambah Data</li>
                                     </ol>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <!-- end page title -->
-
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">DATA TESTIMONIAL TENTANG WEBSITE</h4>
-                                    {{-- <p class="card-title-desc">DataTables has most features enabled by
-                                        default, so all you need to do to use it with your own tables is to call
-                                        the construction function: <code>$().DataTable();</code>. --}}
-                                    </p>
-                                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
-                                            <tr>
-                                                <th>NO</th>
-                                                <th>Nama</th>
-                                                <th>Keterangan</th>
-                                                <th>Deskripsi Testimonial</th>
-                                                <th>Rating</th>
-                                                <th>Status</th>
-                                              
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <?php $no = 1; ?>
-                                        @foreach ($data as $testimonial)
-                                            <tr>
-                                                <td>{{ $no }}</td>
-                                                <td>{{ $testimonial->nama }}</td>
-                                                <td>{{ $testimonial->keterangan }}</td>
-                                                <td style="word-break: break-all;">{!! $testimonial->deskripsi_testimonial !!}</td>
-                                               <td>
-                                                    @for ($i = 1; $i <= 5; $i++)
-                                                        @if ($i <= $testimonial->rating)
-                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                        @else
-                                                            <i class="bi bi-star text-secondary"></i>
-                                                        @endif
-                                                    @endfor
-                                                  
-                                                </td>
-                                                <td>
-                                                    @if ($testimonial->status == 0)
-                                                        <span class="badge bg-warning">Pending</span>
-                                                    @elseif ($testimonial->status == 1)
-                                                        <span class="badge bg-success">Diterima</span>
-                                                    @else
-                                                        <span class="badge bg-danger">Ditolak</span>
-                                                    @endif
-                                                </td>
-                                                   
 
+                                    <h4 class="card-title">Input Data Rt DESA</h4>
+                                    {{-- <p class="card-title-desc">Isi semua kolom di bawah untuk menambahkan entri blog
+                                        baru.</p> --}}
 
-                                                    <td>
-                                                        <form action="/accepttestimonial/{{ $testimonial->id }}" method="POST" style="display: inline;">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-success">
-                                                                <i class="fa-solid fa-check"></i>
-                                                            </button>
-                                                        </form>
-                                                        <form action="/rejecttestimonial/{{ $testimonial->id }}" method="POST" style="display: inline;">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-danger">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                            </tr>
+                                    <form method="post" action="/storert"  enctype="multipart/form-data">
+                                        @csrf
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label">Dusun</label>
+                                            <select class="form-select" name="dusun" id="dusun-select">
+                                                <option value="">Pilih Dusun</option>
+                                                @foreach($rw->unique('dusun') as $data)
+                                                <option value="{{ $data->dusun }}">{{ $data->dusun }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">No Rw</label>
+                                            <select class="form-select" name="rw_id" id="rw-select">
+                                                <option value="">Pilih RW</option>
+                                            </select>
+                                        </div>
 
-
-                                            </tbody>
-                                            <?php $no++; ?>
-                                        @endforeach
-                                    </table>
+                                        <script>
+                                            document.getElementById('dusun-select').addEventListener('change', function() {
+                                                const selectedDusun = this.value;
+                                                const rwSelect = document.getElementById('rw-select');
+                                                const rwData = @json($rw);
+                                                
+                                                // Clear current options
+                                                rwSelect.innerHTML = '<option value="">Pilih RW</option>';
+                                                
+                                                // Filter and add RW options based on selected dusun
+                                                rwData.filter(item => item.dusun === selectedDusun)
+                                                    .forEach(item => {
+                                                        const option = new Option(item.no_rw, item.id);
+                                                        rwSelect.add(option);
+                                                    });
+                                            });
+                                        </script>
+                                        <div class="mb-3">
+                                            <label class="form-label">No Rt</label>
+                                            <input type="text" class="form-control" name="no_rt" id="no_rt"
+                                                placeholder="Masukkan No Rt">
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-3 mt-3">
+                                            <button type="submit"
+                                                class="btn btn-primary waves-effect waves-light w-md">Simpan
+                                                Data Rt</button>
+                                            <button type="reset"
+                                                class="btn btn-outline-secondary waves-effect waves-light w-md">Reset
+                                                Form</button>
+                                        </div>
+                                    </form>
 
                                 </div>
                             </div>
-                        </div> <!-- end col -->
-                    </div> <!-- end row -->
-
-
-
-                </div> <!-- container-fluid -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- End Page-content -->
 
@@ -174,7 +154,8 @@
             <div class="p-4">
                 <h6 class="mb-3">Layout</h6>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="layout" id="layout-vertical" value="vertical">
+                    <input class="form-check-input" type="radio" name="layout" id="layout-vertical"
+                        value="vertical">
                     <label class="form-check-label" for="layout-vertical">Vertical</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -282,6 +263,24 @@
 
     <!-- JAVASCRIPT -->
     @include('Admin.LayoutAdmin.scripts')
+    <script>
+    const laki = document.getElementById('laki');
+    const perempuan = document.getElementById('perempuan');
+    const total = document.getElementById('total');
+
+    function updateTotal() {
+        const valLaki = parseInt(laki.value) || 0;
+        const valPerempuan = parseInt(perempuan.value) || 0;
+        total.value = valLaki + valPerempuan;
+    }
+
+    laki.addEventListener('input', updateTotal);
+    perempuan.addEventListener('input', updateTotal);
+
+    // Inisialisasi saat halaman dimuat
+    window.addEventListener('DOMContentLoaded', updateTotal);
+    </script>
+
 </body>
 
 </html>

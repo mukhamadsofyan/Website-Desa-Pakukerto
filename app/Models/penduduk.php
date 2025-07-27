@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class penduduk extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'total_dusun',
-        'total_rt',
-        'total_rw',
-        'laki_laki',
-        'perempuan',
-        'total_penduduk'
-    ];
+    protected $guarded = [];
+
+    public function rw()
+{
+    return $this->belongsTo(RW::class);
+}
+
+public function rt()
+{
+    return $this->belongsTo(RT::class);
+}
 }

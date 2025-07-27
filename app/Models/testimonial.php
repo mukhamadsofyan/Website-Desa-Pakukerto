@@ -13,6 +13,7 @@ class testimonial extends Model
         'keterangan',
         'deskripsi_testimonial',
         'rating',
-        'foto_testimonial'
+        'foto_testimonial',
+        'status'
     ];
 }

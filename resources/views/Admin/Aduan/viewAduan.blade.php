@@ -49,7 +49,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">DATA TESTIMONIAL TENTANG WEBSITE</h4>
+                                    <h4 class="card-title">DATA ADUAN WARGA</h4>
                                     {{-- <p class="card-title-desc">DataTables has most features enabled by
                                         default, so all you need to do to use it with your own tables is to call
                                         the construction function: <code>$().DataTable();</code>. --}}
@@ -58,79 +58,55 @@
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>NO</th>
-                                                <th>Nama</th>
-                                                <th>Keterangan</th>
-                                                <th>Deskripsi Testimonial</th>
-                                                <th>Rating</th>
+                                                <th>No</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>No HP</th>
+                                                <th>Kategori</th>
+                                                <th>Isi Aduan</th>
+                                                <th>Tanggal</th>
                                                 <th>Status</th>
-                                              
+                                                <th>Foto</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
-                                        <?php $no = 1; ?>
-                                        @foreach ($data as $testimonial)
+                                        <tbody>
+                                            @foreach ($aduan as $item)
                                             <tr>
-                                                <td>{{ $no }}</td>
-                                                <td>{{ $testimonial->nama }}</td>
-                                                <td>{{ $testimonial->keterangan }}</td>
-                                                <td style="word-break: break-all;">{!! $testimonial->deskripsi_testimonial !!}</td>
-                                               <td>
-                                                    @for ($i = 1; $i <= 5; $i++)
-                                                        @if ($i <= $testimonial->rating)
-                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                        @else
-                                                            <i class="bi bi-star text-secondary"></i>
-                                                        @endif
-                                                    @endfor
-                                                  
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->no_hp }}</td>
+                                                <td>{{ $item->kategori }}</td>
+                                                <td>{{ $item->isi }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
+                                                <td>{{ $item->status == 0 ? 'Pending' : 'ACC' }}</td>
+                                                <td>
+                                                    <img src="{{ asset('Aduan/' . $item->foto) }}"
+                                                        alt="" style="width: 80px; height:80px;">
                                                 </td>
                                                 <td>
-                                                    @if ($testimonial->status == 0)
-                                                        <span class="badge bg-warning">Pending</span>
-                                                    @elseif ($testimonial->status == 1)
-                                                        <span class="badge bg-success">Diterima</span>
+                                                   
+                                                    @if($item->status == 0)
+                                                        <form action="/acceptaduan/{{ $item->id }}" method="post" style="display: inline-block;">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success btn-sm">Setujui</button>
+                                                        </form>
                                                     @else
-                                                        <span class="badge bg-danger">Ditolak</span>
+                                                        <span class="text-success">Telah disetujui</span>
                                                     @endif
                                                 </td>
-                                                   
-
-
-                                                    <td>
-                                                        <form action="/accepttestimonial/{{ $testimonial->id }}" method="POST" style="display: inline;">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-success">
-                                                                <i class="fa-solid fa-check"></i>
-                                                            </button>
-                                                        </form>
-                                                        <form action="/rejecttestimonial/{{ $testimonial->id }}" method="POST" style="display: inline;">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-danger">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                            </tr>
-
-
-                                            </tbody>
-                                            <?php $no++; ?>
-                                        @endforeach
+                                                </tr>
+                                                @endforeach
+                                        </tbody>
                                     </table>
+
 
                                 </div>
                             </div>
                         </div> <!-- end col -->
                     </div> <!-- end row -->
-
-
-
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-
-
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row">
@@ -282,6 +258,46 @@
 
     <!-- JAVASCRIPT -->
     @include('Admin.LayoutAdmin.scripts')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+
+            document.querySelectorAll('.btn-delete').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Yakin mau hapus?",
+                        text: "Data yang dihapus tidak bisa dikembalikan!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Ya, hapus!",
+                        cancelButtonText: "Batal",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Lakukan penghapusan, misalnya redirect ke route destroy
+                            window.location.href = "/deletepersuratan/" + id;
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            swalWithBootstrapButtons.fire(
+                                "Dibatalkan",
+                                "Data tidak jadi dihapus :)",
+                                "error"
+                            );
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

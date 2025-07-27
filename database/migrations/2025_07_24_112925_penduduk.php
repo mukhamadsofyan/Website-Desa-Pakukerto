@@ -13,13 +13,22 @@ return new class extends Migration
     {
         Schema::create('penduduks', function (Blueprint $table) {
             $table->id();
-            $table->string('total_dusun');
-            $table->string('total_rt');
-            $table->string('total_rw');
-            $table->string('laki_laki');
-            $table->string('perempuan');
-            $table->string('total_penduduk');
+            $table->string('nama');
+            $table->string('alamat');
+            $table->string('dusun');
+            $table->integer('umur');
+            $table->string('jenis_kelamin');
+            $table->string('pendidikan');
+            $table->string('pekerjaan');
+            $table->string('agama');
+            $table->string('status_perkawinan');
+            $table->unsignedBigInteger('rw_id');
+            $table->unsignedBigInteger('rt_id');
             $table->timestamps();
+            $table->foreign('rw_id')->references('id')->on('rws')->onDelete('cascade');
+            $table->foreign('rt_id')->references('id')->on('rts')->onDelete('cascade');
+
+            
         });
     }
 

@@ -55,7 +55,7 @@ class BlogController extends Controller
         // dd($blog);
         return view('Admin.blog.EditView', compact('blog'));
     }
-
+    
     public function update(Request $request, Blog $blog)
     {
         $request->validate([
