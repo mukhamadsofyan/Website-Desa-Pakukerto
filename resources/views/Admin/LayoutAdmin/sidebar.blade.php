@@ -59,7 +59,7 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="/sambutanKades">Sambutan Kades</a></li>
                                     <li><a href="/Penduduk">Penduduk</a></li>
-                                    <li><a href="#">Struktural Desa</a></li>
+                                    <li><a href="/struktural">Struktural Desa</a></li>
                                     <li><a href="/testimonial">Testimonial</a></li>
                                 </ul>
                             </li>

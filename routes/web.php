@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\Home;
 use App\Http\Controllers\Admin\AgendaDesa;
 use App\Http\Controllers\Admin\Persuratan;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
-
+use App\Http\Controllers\Admin\strukturaldesa;
 
 // ==========================================
 // LANDING ROUTES (Frontend)
@@ -99,3 +99,11 @@ Route::post('/inserttestimoni', [Home::class, 'inserttestimoni']);
 Route::get('/edittestimoni/{id}', [Home::class, 'edittestimoni'])->name('edittestimoni');
 Route::post('/updatetestimoni/{id}', [Home::class, 'updatetestimoni']);
 Route::get('/deletetestimoni/{id}', [Home::class, 'deletetestimoni']);
+
+//////////////// ----------- Struktural ----------- /////////////////////////////
+Route::get('/struktural', [strukturaldesa::class, 'strukturalDesa'])->name('viewstrukturalDesa');
+Route::get('/tambahstruktural', [strukturaldesa::class, 'tambahstruktural'])->name('viewtambahstruktural');
+Route::post('/insertstruktural', [strukturaldesa::class, 'insertstruktural']);
+Route::get('/editstruktural/{id}', [strukturaldesa::class, 'editstruktural'])->name('editstruktural');
+Route::post('/updatestruktural/{id}', [strukturaldesa::class, 'updatestruktural']);
+Route::get('/deletestruktural/{id}', [strukturaldesa::class, 'deletestruktural']);

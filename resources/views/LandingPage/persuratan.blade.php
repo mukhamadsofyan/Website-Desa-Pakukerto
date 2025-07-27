@@ -12,7 +12,7 @@
     <!-- Preloader Ends -->
 
     <!-- header starts -->
-    @include('LandingPage.Layout.header')
+    @include('LandingPage.Layout.header')z
     <!-- header ends -->
 
     <!-- Course Detail start -->

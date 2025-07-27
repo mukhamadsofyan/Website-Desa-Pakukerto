@@ -556,27 +556,30 @@
             </div>
             <div class="wrap-customize">
                 <div class="row">
+                    @foreach ($agenda as $agenda)
+
                     <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap wow fadeInUp">
                         <div class="customize-item">
                             <div class="sv-image">
-                                <img src="{{ asset('LandingPageOri/assets/images/courses/Kerja-Bakti.png') }}"
-                                    alt="" />
+                                {{-- <img src="{{ $agenda->foto_agenda ? asset('storage/' . $agenda->foto_agenda) }}"
+                                alt="" /> --}}
                             </div>
                             <div class="customize-ct">
                                 <h4>
-                                    <a href="event-detail.html">Kerja Bakti Bersama Warga Dusun Kemiri</a>
+                                    <a href="event-detail.html">{{ $agenda->nama_agenda }}</a>
                                 </h4>
                             </div>
                             <div class="customize-bottom">
                                 <ul class="d-flex justify-content-start">
-                                    <li class="mr-3"><i class="far fa-calendar-alt"></i> 30 Juli</li>
-                                    <li class="mr-3"><i class="far fa-clock"></i> 09.00-selesai</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Depan SDN 2 Pakukerto</li>
+                                    <li class="mr-3"><i class="far fa-calendar-alt"></i> {{ $agenda->tanggal_agenda }}</li>
+                                    <li class="mr-3"><i class="far fa-clock"></i> {{ $agenda->waktu_agenda }}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i> {{ $agenda->lokasi_agenda }}</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap wow fadeInUp">
+                    @endforeach
+                    {{-- <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap wow fadeInUp">
                         <div class="customize-item">
                             <div class="sv-image">
                                 <img src="{{ asset('LandingPageOri/assets/images/courses/Bazar.png') }}"
@@ -615,7 +618,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
