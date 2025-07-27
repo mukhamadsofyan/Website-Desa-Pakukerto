@@ -63,7 +63,8 @@
                                                 <th>Keterangan</th>
                                                 <th>Deskripsi Testimonial</th>
                                                 <th>Rating</th>
-                                                <th>Rating</th>
+                                                <th>Status</th>
+                                              
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -74,7 +75,7 @@
                                                 <td>{{ $testimonial->nama }}</td>
                                                 <td>{{ $testimonial->keterangan }}</td>
                                                 <td style="word-break: break-all;">{!! $testimonial->deskripsi_testimonial !!}</td>
-                                                < {{-- TAMPILAN BINTANG RATING --}} <td>
+                                               <td>
                                                     @for ($i = 1; $i <= 5; $i++)
                                                         @if ($i <= $testimonial->rating)
                                                             <i class="bi bi-star-fill text-warning"></i>
@@ -82,18 +83,33 @@
                                                             <i class="bi bi-star text-secondary"></i>
                                                         @endif
                                                     @endfor
-                                                    </td>
-                                                    <td>
-                                                        <img src="{{ asset('fototestimonial/' . $testimonial->foto_testimonial) }}"
-                                                            alt="" style="width: 80px; height:80px;">
-                                                    </td>
+                                                  
+                                                </td>
+                                                <td>
+                                                    @if ($testimonial->status == 0)
+                                                        <span class="badge bg-warning">Pending</span>
+                                                    @elseif ($testimonial->status == 1)
+                                                        <span class="badge bg-success">Diterima</span>
+                                                    @else
+                                                        <span class="badge bg-danger">Ditolak</span>
+                                                    @endif
+                                                </td>
+                                                   
 
 
                                                     <td>
-                                                        <a href="/edittestimonial/{{ $testimonial->id }}"
-                                                            class="btn btn-warning"><i
-                                                                class="fa-solid fa-pen-to-square"></i></a>
-                                                        {{-- <a href="#" class="btn btn-danger delete" data-id="{{ $sambutan->id }}" data-sambutan="{{ $sambutan->nama }}"><i class="fa-solid fa-trash"></i></a> --}}
+                                                        <form action="/accepttestimonial/{{ $testimonial->id }}" method="POST" style="display: inline;">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                        </form>
+                                                        <form action="/rejecttestimonial/{{ $testimonial->id }}" method="POST" style="display: inline;">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="fa-solid fa-xmark"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                             </tr>
 

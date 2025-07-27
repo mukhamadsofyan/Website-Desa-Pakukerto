@@ -202,21 +202,41 @@ class Home extends Controller
     {
     $testi = null;
 
-    if ($request->hasFile('foto_testimonial')) {
-        $posterFile = $request->file('foto_testimonial');
-        $testi = $posterFile->getClientOriginalName();
-        $posterFile->move(public_path('fototestimonial'), $testi);
-    }
+    // if ($request->hasFile('foto_testimonial')) {
+    //     $posterFile = $request->file('foto_testimonial');
+    //     $testi = $posterFile->getClientOriginalName();
+    //     $posterFile->move(public_path('fototestimonial'), $testi);
+    // }
 
     $data = testimonial::create([
         'nama' => $request->input('nama'),
         'keterangan' => $request->input('keterangan'),
         'deskripsi_testimonial' => $request->input('deskripsi_testimonial'),
         'rating' => $request->input('rating'),
-        'foto_testimonial' => $testi // <- sudah diisi, tidak null
+      
     ]);
         return redirect()->route('viewtestimonialDesa')->with('success', 'Berhasil Di Tambahkan');
     }
+
+    public function accepttestimonial($id)
+    {
+        $data = testimonial::findOrFail($id);
+        $data->update([
+            'status' => 1,
+        ]);
+               return redirect()->route('viewtestimonialDesa')->with('success', 'Berhasil Di Setujui');
+
+    }
+    public function rejecttestimonial($id)
+    {
+        $data = testimonial::findOrFail($id);
+        $data->update([
+            'status' => 2,
+        ]);
+               return redirect()->route('viewtestimonialDesa')->with('success', 'Berhasil Di Tolak');
+
+    }
+    
     // public function home()
     // {
     //     // Logic for the landing home page

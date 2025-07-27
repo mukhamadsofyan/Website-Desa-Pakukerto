@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('keterangan');
             $table->string('deskripsi_testimonial');
             $table->integer('rating');
-            $table->string('foto_testimonial');
+            $table->integer('status')->default(0); // 0 = pending, 1 = acc , 2 = tolak
+            $table->string('foto_testimonial')->nullable();
             $table->timestamps();
         });
     }

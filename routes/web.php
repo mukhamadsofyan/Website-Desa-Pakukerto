@@ -127,6 +127,8 @@ Route::post('/inserttestimoni', [Home::class, 'inserttestimoni']);
 Route::get('/edittestimoni/{id}', [Home::class, 'edittestimoni'])->name('edittestimoni');
 Route::post('/updatetestimoni/{id}', [Home::class, 'updatetestimoni']);
 Route::get('/deletetestimoni/{id}', [Home::class, 'deletetestimoni']);
+Route::post('/accepttestimonial/{id}', [Home::class, 'accepttestimonial']);
+Route::post('/rejecttestimonial/{id}', [Home::class, 'rejecttestimonial']);
 
 // ----------- SEJARAH DESA -----------
 Route::get('/sejarahdesa', [Home::class, 'Penduduk'])->name('viewPenduduk');

@@ -110,11 +110,7 @@
                                 </a>
                             </li>
                             <li>
-<<<<<<< HEAD
-                                <a href="{{route('persuratan.view')}}" class="waves-effect">
-=======
                                 <a href="/viewSurat" class="waves-effect">
->>>>>>> 627b61fa066c437a7466a61628f1431670cffbd0
                                     <i class="fas fa-file-alt"></i>
                                     <span class="badge rounded-pill bg-primary float-end"></span>
                                     <span>Administrasi Persuratan</span>
