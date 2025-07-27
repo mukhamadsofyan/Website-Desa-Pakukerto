@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0">Form Edit Data Penduduk</h4>
+                                <h4 class="mb-0">Form Tambah Data Penduduk</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
@@ -52,22 +52,21 @@
                                     {{-- <p class="card-title-desc">Isi semua kolom di bawah untuk menambahkan entri blog
                                         baru.</p> --}}
 
-                                    <form method="post" action="/updatependuduk/{{ $datapenduduk->id }}"  enctype="multipart/form-data">
+                                    <form method="post" action="/storependuduk"  enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-3">
                                             <label class="form-label">Nama</label>
-                                            <input type="text" class="form-control" name="nama" value="{{ $datapenduduk->nama }}">
+                                            <input type="text" class="form-control" name="nama" >
                                         </div>
-
+                                        <div class="mb-3">
+                                            <label class="form-label">Umur</label>
+                                            <input type="number" class="form-control" name="umur" >
+                                        </div>
                                         <div class="mb-3">
                                             <label class="form-label">Alamat</label>
-                                            <input type="text" class="form-control" name="alamat" value="{{ $datapenduduk->alamat }}">
+                                            <input type="text" class="form-control" name="alamat" >
                                         </div>
-                                         <div class="mb-3">
-                                            <label class="form-label">Umur</label>
-                                            <input type="number" class="form-control" name="umur" value="{{ $datapenduduk->umur }}" >
-                                        </div>
-                                         <div class="mb-3">
+                                        <div class="mb-3">
                                             <label class="form-label">Jenis Kelamin</label>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="jenis_kelamin" value="Laki-laki" id="laki-laki">
@@ -82,24 +81,81 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Dusun</label>
-                                            <select class="form-select" name="dusun">
-                                                <option value="{{ $datapenduduk->dusun }}" selected>{{ $datapenduduk->dusun }}</option>
-                                                <option value="Kemiri">Kemiri</option>
-                                                <option value="Janti">Janti</option>
-                                                <option value="Gendol">Gendol</option>
-                                                <option value="Pakunden">Pakunden</option>
-                                                <option value="Mojolengko">Mojolengko</option>
-                                            </select>
-                                        </div>
+                                        
+                                      <!-- Dusun Dropdown -->
+<div class="mb-3">
+    <label class="form-label">Dusun</label>
+    <select class="form-select" name="dusun" id="dusun" onchange="updateRW()">
+        <option value="">--Pilih Dusun--</option>
+        <option value="Kemiri">Kemiri</option>
+        <option value="Janti">Janti</option>
+        <option value="Gendol">Gendol</option>
+        <option value="Pakunden">Pakunden</option>
+        <option value="Mojolengko">Mojolengko</option>
+    </select>
+</div>
+
+<!-- RW Dropdown -->
+<div class="mb-3">
+    <label class="form-label">RW</label>
+    <select id="rw" class="form-select" name="rw_id" onchange="updateRT()">
+        <option value="">--Pilih RW--</option>
+    </select>
+</div>
+
+<!-- RT Dropdown -->
+<div class="mb-3">
+    <label class="form-label">RT</label>
+    <select id="rt" class="form-select" name="rt_id">
+        <option value="">--Pilih RT--</option>
+    </select>
+</div>
+
+<script>
+    const rwData = @json($rw); // kirim RW beserta RT-nya ke JavaScript
+
+    function updateRW() {
+        const selectedDusun = document.getElementById('dusun').value;
+        const rwSelect = document.getElementById('rw');
+        const rtSelect = document.getElementById('rt');
+
+        // Kosongkan RW dan RT
+        rwSelect.innerHTML = '<option value="">--Pilih RW--</option>';
+        rtSelect.innerHTML = '<option value="">--Pilih RT--</option>';
+
+        // Tambahkan RW yang sesuai dusun
+        rwData
+            .filter(rw => rw.dusun === selectedDusun)
+            .forEach(rw => {
+                const option = new Option(rw.no_rw, rw.id);
+                rwSelect.add(option);
+            });
+    }
+
+    function updateRT() {
+        const selectedRwId = document.getElementById('rw').value;
+        const rtSelect = document.getElementById('rt');
+
+        // Kosongkan RT
+        rtSelect.innerHTML = '<option value="">--Pilih RT--</option>';
+
+        const rw = rwData.find(rw => rw.id == selectedRwId);
+        if (rw && rw.rt && rw.rt.length > 0) {
+            rw.rt.forEach(rt => {
+                const option = new Option(rt.no_rt, rt.id);
+                rtSelect.add(option);
+            });
+        }
+    }
+</script>
+
 
                                         
 
                                         <div class="mb-3">
                                             <label class="form-label">Pekerjaan</label>
                                             <select class="form-select" name="pekerjaan">
-                                                <option value="{{ $datapenduduk->pekerjaan }}" selected>{{ $datapenduduk->pekerjaan }}</option>
+                                            
                                                 <option value="Petani">Petani</option>
                                                 <option value="Pedagang">Pedagang</option>
                                                 <option value="PNS">PNS</option>
@@ -111,7 +167,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Pendidikan</label>
                                             <select class="form-select" name="pendidikan">
-                                                <option value="{{ $datapenduduk->pendidikan }}" selected>{{ $datapenduduk->pendidikan }}</option>
+                                              
                                                 <option value="SD">SD</option>
                                                 <option value="SMP">SMP</option>
                                                 <option value="SMA">SMA</option>
@@ -124,7 +180,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Agama</label>
                                             <select class="form-select" name="agama">
-                                                <option value="{{ $datapenduduk->agama }}" selected>{{ $datapenduduk->agama }}</option>
+                                             
                                                 <option value="Islam">Islam</option>
                                                 <option value="Kristen">Kristen</option>
                                                 <option value="Katolik">Katolik</option>
@@ -137,7 +193,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Status Perkawinan</label>
                                             <select class="form-select" name="status_perkawinan">
-                                                <option value="{{ $datapenduduk->status_perkawinan }}" selected>{{ $datapenduduk->status_perkawinan }}</option>
+                                            
                                                 <option value="Belum Kawin">Belum Kawin</option>
                                                 <option value="Kawin">Kawin</option>
                                                 <option value="Cerai Hidup">Cerai Hidup</option>

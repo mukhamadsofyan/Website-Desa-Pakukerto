@@ -21,6 +21,9 @@ use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 
 // ----------- HOME -----------
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/Aduan', [HomeController::class, 'aduan'])->name('aduan');
+Route::get('/Bansos', [HomeController::class, 'Bansos'])->name('Bansos');
+Route::get('/Darurat', [HomeController::class, 'Darurat'])->name('Darurat');
 
 // ----------- BLOG -----------
 Route::get('/blog', [BlogController::class, 'Blog'])->name('Blog');
@@ -81,7 +84,28 @@ Route::post('/updatesambutan/{id}', [Home::class, 'updatesambutan']);
 // ----------- TOTAL PENDUDUK -----------
 Route::get('/Penduduk', [Home::class, 'Penduduk'])->name('viewPenduduk');
 Route::get('/editpenduduk/{id}', [Home::class, 'editpenduduk'])->name('editpenduduk');
+Route::get('/tambahpenduduk', [Home::class, 'tambahpenduduk'])->name('tambahpenduduk');
 Route::post('/updatependuduk/{id}', [Home::class, 'updatependuduk']);
+Route::post('/storependuduk', [Home::class, 'storependuduk']);
+
+// ----------- RT & RW -----------
+Route::get('/Rt', [Home::class, 'Rt'])->name('viewRt');
+Route::get('/tambahrt', [Home::class, 'tambahrt'])->name('viewtambahrt');
+Route::post('/storert', [Home::class, 'storert']);
+Route::get('/editrt/{id}', [Home::class, 'editrt'])->name('editrt');
+Route::post('/updatert/{id}', [Home::class, 'updatert']);
+Route::get('/deletert/{id}', [Home::class, 'deletert']);
+
+Route::get('/Rw', [Home::class, 'Rw'])->name('viewRw');
+Route::get('/tambahrw', [Home::class, 'tambahrw'])->name('viewtambahrw');
+Route::post('/storerw', [Home::class, 'storerw']);
+Route::get('/editrw/{id}', [Home::class, 'editrw'])->name('editrw');
+Route::post('/updaterw/{id}', [Home::class, 'updaterw']);
+Route::get('/deleterw/{id}', [Home::class, 'deleterw']);
+
+
+
+
 
 // ----------- AGENDA DESA -----------
 Route::get('/Agenda', [AgendaDesa::class, 'AgendaDesa'])->name('viewAgendaDesa');

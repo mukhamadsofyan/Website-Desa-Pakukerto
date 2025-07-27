@@ -49,7 +49,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">DATA TESTIMONIAL TENTANG WEBSITE</h4>
+                                    <h4 class="card-title">DATA RW DESA PAKUKERTO</h4>
+                                    <a href="/tambahrw" class="btn btn-primary">Tambah Data</a>
                                     {{-- <p class="card-title-desc">DataTables has most features enabled by
                                         default, so all you need to do to use it with your own tables is to call
                                         the construction function: <code>$().DataTable();</code>. --}}
@@ -59,45 +60,24 @@
                                         <thead>
                                             <tr>
                                                 <th>NO</th>
-                                                <th>Nama</th>
-                                                <th>Keterangan</th>
-                                                <th>Deskripsi Testimonial</th>
-                                                <th>Rating</th>
-                                                <th>Rating</th>
+                                                <th>Nama Dusun</th>
+                                                <th>No Rw</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <?php $no = 1; ?>
-                                        @foreach ($data as $testimonial)
+                                        @foreach ($data as $rw)
                                             <tr>
                                                 <td>{{ $no }}</td>
-                                                <td>{{ $testimonial->nama }}</td>
-                                                <td>{{ $testimonial->keterangan }}</td>
-                                                <td style="word-break: break-all;">{!! $testimonial->deskripsi_testimonial !!}</td>
-                                                < {{-- TAMPILAN BINTANG RATING --}} <td>
-                                                    @for ($i = 1; $i <= 5; $i++)
-                                                        @if ($i <= $testimonial->rating)
-                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                        @else
-                                                            <i class="bi bi-star text-secondary"></i>
-                                                        @endif
-                                                    @endfor
-                                                    </td>
-                                                    <td>
-                                                        <img src="{{ asset('fototestimonial/' . $testimonial->foto_testimonial) }}"
-                                                            alt="" style="width: 80px; height:80px;">
-                                                    </td>
-
-
-                                                    <td>
-                                                        <a href="/edittestimonial/{{ $testimonial->id }}"
-                                                            class="btn btn-warning"><i
-                                                                class="fa-solid fa-pen-to-square"></i></a>
-                                                        {{-- <a href="#" class="btn btn-danger delete" data-id="{{ $sambutan->id }}" data-sambutan="{{ $sambutan->nama }}"><i class="fa-solid fa-trash"></i></a> --}}
-                                                    </td>
+                                                <td>{{ $rw->dusun }}</td>
+                                                <td>{{ $rw->no_rw }}</td>
+                                                <td>
+                                                    <a href="/editrw/{{ $rw->id }}"
+                                                        class="btn btn-warning"><i
+                                                            class="fa-solid fa-pen-to-square"></i></a>
+                                                    {{-- <a href="#" class="btn btn-danger delete" data-id="{{ $sambutan->id }}" data-sambutan="{{ $sambutan->nama }}"><i class="fa-solid fa-trash"></i></a> --}}
+                                                </td>
                                             </tr>
-
-
                                             </tbody>
                                             <?php $no++; ?>
                                         @endforeach
@@ -265,7 +245,21 @@
     <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
-    @include('Admin.LayoutAdmin.scripts')
+    <script src="{{ asset('assetsAdmin/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assetsAdmin/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assetsAdmin/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assetsAdmin/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assetsAdmin/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('assetsAdmin/libs/waypoints/lib/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('assetsAdmin/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
+
+    <!-- apexcharts -->
+    <script src="{{ asset('assetsAdmin/libs/apexcharts/apexcharts.min.js') }}"></script>
+
+    <script src="{{ asset('assetsAdmin/js/pages/dashboard.init.js') }}"></script>
+
+    <!-- App js -->
+    <script src="{{ asset('assetsAdmin/js/app.js') }}"></script>
 </body>
 
 </html>

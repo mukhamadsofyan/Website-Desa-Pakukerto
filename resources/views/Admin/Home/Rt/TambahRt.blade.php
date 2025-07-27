@@ -31,8 +31,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0">Form Edit Data Penduduk</h4>
-
+                                <h4 class="mb-0">Form Tambah Data Rw</h4>
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Blog</a></li>
@@ -48,107 +47,55 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Input Data Kependudukan DESA</h4>
+                                    <h4 class="card-title">Input Data Rt DESA</h4>
                                     {{-- <p class="card-title-desc">Isi semua kolom di bawah untuk menambahkan entri blog
                                         baru.</p> --}}
 
-                                    <form method="post" action="/updatependuduk/{{ $datapenduduk->id }}"  enctype="multipart/form-data">
+                                    <form method="post" action="/storert"  enctype="multipart/form-data">
                                         @csrf
-                                        <div class="mb-3">
-                                            <label class="form-label">Nama</label>
-                                            <input type="text" class="form-control" name="nama" value="{{ $datapenduduk->nama }}">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Alamat</label>
-                                            <input type="text" class="form-control" name="alamat" value="{{ $datapenduduk->alamat }}">
-                                        </div>
-                                         <div class="mb-3">
-                                            <label class="form-label">Umur</label>
-                                            <input type="number" class="form-control" name="umur" value="{{ $datapenduduk->umur }}" >
-                                        </div>
-                                         <div class="mb-3">
-                                            <label class="form-label">Jenis Kelamin</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jenis_kelamin" value="Laki-laki" id="laki-laki">
-                                                <label class="form-check-label" for="laki-laki">
-                                                    Laki-laki
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jenis_kelamin" value="Perempuan" id="perempuan">
-                                                <label class="form-check-label" for="perempuan">
-                                                    Perempuan
-                                                </label>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="mb-3">
                                             <label class="form-label">Dusun</label>
-                                            <select class="form-select" name="dusun">
-                                                <option value="{{ $datapenduduk->dusun }}" selected>{{ $datapenduduk->dusun }}</option>
-                                                <option value="Kemiri">Kemiri</option>
-                                                <option value="Janti">Janti</option>
-                                                <option value="Gendol">Gendol</option>
-                                                <option value="Pakunden">Pakunden</option>
-                                                <option value="Mojolengko">Mojolengko</option>
-                                            </select>
-                                        </div>
-
-                                        
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Pekerjaan</label>
-                                            <select class="form-select" name="pekerjaan">
-                                                <option value="{{ $datapenduduk->pekerjaan }}" selected>{{ $datapenduduk->pekerjaan }}</option>
-                                                <option value="Petani">Petani</option>
-                                                <option value="Pedagang">Pedagang</option>
-                                                <option value="PNS">PNS</option>
-                                                <option value="Wiraswasta">Wiraswasta</option>
-                                                <option value="Buruh">Buruh</option>
-                                                <option value="Lainnya">Lainnya</option>
+                                            <select class="form-select" name="dusun" id="dusun-select">
+                                                <option value="">Pilih Dusun</option>
+                                                @foreach($rw->unique('dusun') as $data)
+                                                <option value="{{ $data->dusun }}">{{ $data->dusun }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Pendidikan</label>
-                                            <select class="form-select" name="pendidikan">
-                                                <option value="{{ $datapenduduk->pendidikan }}" selected>{{ $datapenduduk->pendidikan }}</option>
-                                                <option value="SD">SD</option>
-                                                <option value="SMP">SMP</option>
-                                                <option value="SMA">SMA</option>
-                                                <option value="D3">D3</option>
-                                                <option value="S1">S1</option>
-                                                <option value="S2">S2</option>
-                                                <option value="S3">S3</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Agama</label>
-                                            <select class="form-select" name="agama">
-                                                <option value="{{ $datapenduduk->agama }}" selected>{{ $datapenduduk->agama }}</option>
-                                                <option value="Islam">Islam</option>
-                                                <option value="Kristen">Kristen</option>
-                                                <option value="Katolik">Katolik</option>
-                                                <option value="Hindu">Hindu</option>
-                                                <option value="Buddha">Buddha</option>
-                                                <option value="Konghucu">Konghucu</option>
+                                            <label class="form-label">No Rw</label>
+                                            <select class="form-select" name="rw_id" id="rw-select">
+                                                <option value="">Pilih RW</option>
                                             </select>
                                         </div>
 
+                                        <script>
+                                            document.getElementById('dusun-select').addEventListener('change', function() {
+                                                const selectedDusun = this.value;
+                                                const rwSelect = document.getElementById('rw-select');
+                                                const rwData = @json($rw);
+                                                
+                                                // Clear current options
+                                                rwSelect.innerHTML = '<option value="">Pilih RW</option>';
+                                                
+                                                // Filter and add RW options based on selected dusun
+                                                rwData.filter(item => item.dusun === selectedDusun)
+                                                    .forEach(item => {
+                                                        const option = new Option(item.no_rw, item.id);
+                                                        rwSelect.add(option);
+                                                    });
+                                            });
+                                        </script>
                                         <div class="mb-3">
-                                            <label class="form-label">Status Perkawinan</label>
-                                            <select class="form-select" name="status_perkawinan">
-                                                <option value="{{ $datapenduduk->status_perkawinan }}" selected>{{ $datapenduduk->status_perkawinan }}</option>
-                                                <option value="Belum Kawin">Belum Kawin</option>
-                                                <option value="Kawin">Kawin</option>
-                                                <option value="Cerai Hidup">Cerai Hidup</option>
-                                                <option value="Cerai Mati">Cerai Mati</option>
-                                            </select>
+                                            <label class="form-label">No Rt</label>
+                                            <input type="text" class="form-control" name="no_rt" id="no_rt"
+                                                placeholder="Masukkan No Rt">
                                         </div>
-
                                         <div class="d-flex flex-wrap gap-3 mt-3">
                                             <button type="submit"
                                                 class="btn btn-primary waves-effect waves-light w-md">Simpan
-                                                Data Penduduk</button>
+                                                Data Rt</button>
                                             <button type="reset"
                                                 class="btn btn-outline-secondary waves-effect waves-light w-md">Reset
                                                 Form</button>

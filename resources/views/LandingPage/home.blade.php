@@ -138,28 +138,28 @@
     <section class="counter">
 
         <div class="container">
-            @foreach ($penduduk as $datapenduduk)
+          
             <div class="counter-wrap wow fadeInUp">
                 <div class="content d-flex justify-content-between">
                     <div class="value-pin">
-                        <span class="countfect value" data-num="{{ $datapenduduk->total_penduduk }}"></span>
+                        <span class="countfect value" data-num="{{$penduduk}}"></span>
                         <h5>Penduduk</h5>
                     </div>
                     <div class="value-pin">
-                        <span class="countfect value" data-num="{{ $datapenduduk->total_dusun }}"></span>
+                        <span class="countfect value" data-num="{{$dusun}}"></span>
                         <h5>Dusun</h5>
                     </div>
                     <div class="value-pin">
-                        <span class="countfect value" data-num="{{ $datapenduduk->total_rt }}"></span>
+                        <span class="countfect value" data-num="{{$rt}}"></span>
                         <h5>RT</h5>
                     </div>
                     <div class="value-pin">
-                        <span class="countfect value" data-num="{{ $datapenduduk->total_rw }}"></span>
+                        <span class="countfect value" data-num="{{$rw}}"></span>
                         <h5>RW</h5>
                     </div>
                 </div>
             </div>
-            @endforeach
+           
         </div>
     </section>
     <!-- End Counter main -->
@@ -177,33 +177,33 @@
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <div class="browse-list">
-                    <a href="course-2.html">
+                    <a href="/persuratan">
                         <i class="fa-solid fa-envelope"></i>
                         <h4>Surat Online</h4>
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="course-2.html">
+                    <a href="/event">
                         <i class="fa-solid fa-bullhorn"></i>
                         <h4>Pengumuman</h4>
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="course-2.html">
+                    <a href="/Aduan">
                         <i class="fa-solid fa-file"></i>
                         <h4>Aduan Warga</h4>
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="course-2.html">
+                    <a href="/Darurat">
                         <i class="fa-solid fa-truck-medical"></i>
-                        <h4>Siaga Ambulan</h4>
+                        <h4>Darurat & Bencana</h4>
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="course-2.html">
-                        <i class="fa-solid fa-house"></i>
-                        <h4>Kependudukan Online</h4>
+                    <a href="/Bansos">
+                        <i class="fa-solid fa-user-check"></i>
+                        <h4>Pengecekan Bansos</h4>
                     </a>
                 </div>
             </div>

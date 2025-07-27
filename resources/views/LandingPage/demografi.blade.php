@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
 
 @include('LandingPage.Layout.head')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <body>
     <div id="preloader">
@@ -97,6 +98,174 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title sc-center justify-content-center text-center borderline">
+                        <div class="title-top">
+                            <div class="title-quote">
+                                <span>DATA PENTING</span>
+                            </div>
+                            <h2>GRAFIK PENDUDUK</h2>
+                        </div>
+                    </div>
+                    <h2 style="text-align: center;">Berdasarkan Kelompok Umur</h2>
+                    <div style="width: 1000px; margin: auto;">
+                        <canvas id="piramidaChart" width="1000" height="700"></canvas>
+                    </div>
+
+                    <script>
+                        const labels = @json($labels);
+                        const dataMale = @json($male);
+                        const dataFemale = @json($female);
+
+                        console.log("Labels:", labels);
+                        console.log("Laki-laki:", dataMale);
+                        console.log("Perempuan:", dataFemale);
+
+                        new Chart(document.getElementById('piramidaChart'), {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                        label: 'Laki-laki',
+                                        data: dataMale,
+                                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                                    },
+                                    {
+                                        label: 'Perempuan',
+                                        data: dataFemale,
+                                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                                    }
+                                ]
+                            },
+                            options: {
+                                indexAxis: 'y',
+                                responsive: true,
+                                scales: {
+                                    x: {
+                                        stacked: true,
+                                        min: -10,
+                                        max: 10,
+                                        ticks: {
+                                            callback: function(value) {
+                                                return Math.abs(value);
+                                            }
+                                        }
+                                    },
+                                    y: {
+                                        stacked: true
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(context) {
+                                                let label = context.dataset.label || '';
+                                                let value = Math.abs(context.parsed.x); // supaya tooltip positif juga
+                                                return `${label}: ${value}`;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        });
+                    </script>
+
+                </div>
+                <div>
+                 <h2 style="text-align: center;">Berdasarkan Dusun</h2>
+
+                </div>
+
+                <div>
+                    <canvas id="dusunChart" width="300" height="300"></canvas>
+                </div>
+                <div class="info">
+                    <strong>Keterangan:</strong><br>
+                    @foreach ($data as $row)
+                    {{ $row->dusun }} : {{ $row->total }} Jiwa<br>
+                    @endforeach
+                </div>
+            </div>
+
+            <script>
+                const ctx = document.getElementById('dusunChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: @json($labelss),
+                        datasets: [{
+                            data: @json($totals),
+                            backgroundColor: [
+                                '#36A2EB', '#FFCE56', '#4BC0C0', '#FF6384', '#9966FF'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            }
+                        }
+                    }
+                });
+            </script>
+
+            <h2 style="text-align: center;">Berdasarkan Pendidikan</h2>
+            <div>
+                <canvas id="pendidikanChart" height="100"></canvas>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                const ctxPendidikan = document.getElementById('pendidikanChart').getContext('2d');
+
+                const pendidikanChart = new Chart(ctxPendidikan, {
+                    type: 'bar',
+                    data: {
+                        labels: @json($labelpendidikan),
+                        datasets: [{
+                            label: 'Jumlah Penduduk',
+                            data: @json($values),
+                            backgroundColor: 'rgba(220, 53, 69, 0.7)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.parsed.y + ' orang';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 10
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+        </div>
         </div>
     </section>
     <section class="counter">
