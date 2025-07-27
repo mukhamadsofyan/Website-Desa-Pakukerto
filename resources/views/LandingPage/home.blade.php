@@ -884,7 +884,7 @@
     <!--  Newsletter start -->
 
     <!--  Newsletter end -->
-
+    
     <!-- Footer starts -->
     @include('LandingPage.Layout.footer')
     <!-- Footer ends -->

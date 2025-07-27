@@ -25,14 +25,6 @@
                             <div class="cs-title">
                                 <h3>Persuratan</h3>
                             </div>
-                            {{-- @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif --}}
                             <div class="accordion md-accordion" id="accordionPersuratan" role="tablist"
                                 aria-multiselectable="true">
                                 <div class="card">
@@ -49,8 +41,7 @@
                                         aria-labelledby="headingPersurat1" data-parent="#accordionPersuratan">
                                         <div class="card-body">
                                             <form class="mt-4" action="{{ route('submit.skck') }}" method="POST">
-                                                @csrf {{-- JANGAN LUPA INI! --}}
-
+                                                @csrf
                                                 <div class="row mb-3">
                                                     <div class="col-lg-6 mb-3">
                                                         <div class="form-outline">
@@ -171,46 +162,7 @@
                                     <div id="collapsePersurat2" class="collapse" role="tabpanel"
                                         aria-labelledby="headingPersurat2" data-parent="#accordionPersuratan">
                                         <div class="card-body">
-                                            <form class="mt-4">
-                                                <div class="form-outline mb-4">
-                                                    <label for="formKeteranganPersurat2">Keterangan</label>
-                                                    <textarea class="form-control form-shadow" id="formKeteranganPersurat2" rows="4"></textarea>
-                                                </div>
 
-                                                <div class="row mb-3">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formNamaPersurat2">Nama Lengkap *</label>
-                                                            <input type="text" id="formNamaPersurat2"
-                                                                class="form-control form-shadow">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formEmailPersurat2">Email *</label>
-                                                            <input type="email" id="formEmailPersurat2"
-                                                                class="form-control form-shadow">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formTeleponPersurat2">No.
-                                                                Telepon/WhatsApp</label>
-                                                            <input type="text" id="formTeleponPersurat2"
-                                                                class="form-control form-shadow">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 text-center">
-                                                        <div class="form-outline">
-                                                            <button type="submit"
-                                                                class="btn btn-primary btn-surat mt-3">Ajukan
-                                                                Permohonan</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -281,40 +233,121 @@
                                     <div id="collapsePersurat4" class="collapse" role="tabpanel"
                                         aria-labelledby="headingPersurat4" data-parent="#accordionPersuratan">
                                         <div class="card-body">
-                                            <form class="mt-4">
-                                                <div class="form-outline mb-4">
-                                                    <label for="formKeteranganPersurat4">Keterangan</label>
-                                                    <textarea class="form-control form-shadow" id="formKeteranganPersurat4" rows="4"></textarea>
+                                            <form class="mt-4" action="{{ route('submit.kematian') }}"
+                                                method="POST">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nama_pelapor">Nama Pelapor</label>
+                                                        <input type="text" name="nama_pelapor"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Tuti Hidayati">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nik_pelapor">NIK Pelapor</label>
+                                                        <input type="text" name="nik_pelapor"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: 3514xxxxxxxxxxxx">
+                                                    </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        <label for="alamat_pelapor">Alamat Pelapor</label>
+                                                        <input type="text" name="alamat_pelapor"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Dusun Gendol RT 01 RW 06 Desa Pakukerto">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="status_pelapor">Status Pelapor</label>
+                                                        <input type="text" name="status_pelapor"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Cucu Kandung">
+                                                    </div>
+
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nama_alm">Nama Almarhum</label>
+                                                        <input type="text" name="nama_alm"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Noro Watini">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nik_alm">NIK Almarhum</label>
+                                                        <input type="text" name="nik_alm"
+                                                            class="form-control form-shadow" placeholder="Contoh: -">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="kk_alm">No. KK Almarhum</label>
+                                                        <input type="text" name="kk_alm"
+                                                            class="form-control form-shadow" placeholder="Contoh: -">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="ttl_alm">Tempat, Tanggal Lahir</label>
+                                                        <input type="text" name="ttl_alm"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Pasuruan, 10 Maret 1955">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                        <select name="jenis_kelamin" class="form-control form-shadow">
+                                                            <option value="">Pilih</option>
+                                                            <option value="Laki-Laki">Laki-Laki</option>
+                                                            <option value="Perempuan">Perempuan</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="agama">Agama</label>
+                                                        <input type="text" name="agama"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Islam">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="status_perkawinan">Status Perkawinan</label>
+                                                        <input type="text" name="status_perkawinan"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Kawin">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="pekerjaan">Pekerjaan</label>
+                                                        <input type="text" name="pekerjaan"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Petani / -">
+                                                    </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        <label for="alamat_alm">Alamat Almarhum</label>
+                                                        <input type="text" name="alamat_alm"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Dusun Gendol RT 001 RW 006 Desa Pakukerto">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="tanggal_meninggal">Hari/Tanggal Meninggal</label>
+                                                        <input type="date" name="tanggal_meninggal"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Rabu, 10 Maret 1993">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="tempat_kematian">Tempat Kematian</label>
+                                                        <input type="text" name="tempat_kematian"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Rumah / Rumah Sakit">
+                                                    </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        <label for="sebab_kematian">Sebab Kematian</label>
+                                                        <input type="text" name="sebab_kematian"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Sakit / Kecelakaan">
+                                                    </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        <label for="keperluan">Keperluan Surat</label>
+                                                        <input type="text" name="keperluan"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Pengurusan Warisan / Tanah">
+                                                    </div>
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formNamaPersurat4">Nama Lengkap *</label>
-                                                            <input type="text" id="formNamaPersurat4"
-                                                                class="form-control form-shadow">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formEmailPersurat4">Email *</label>
-                                                            <input type="email" id="formEmailPersurat4"
-                                                                class="form-control form-shadow">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formTeleponPersurat4">No.
-                                                                Telepon/WhatsApp</label>
-                                                            <input type="text" id="formTeleponPersurat4"
-                                                                class="form-control form-shadow">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 text-center">
+
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
                                                         <button type="submit"
-                                                            class="btn btn-primary btn-surat mt-3">Ajukan
-                                                            Permohonan</button>
+                                                            class="btn btn-primary btn-surat px-5 py-2 mt-3 shadow-sm">
+                                                            Ajukan Permohonan
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </form>

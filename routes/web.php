@@ -45,6 +45,8 @@ Route::get('/umkm/detail', [UmkmController::class, 'ViewDetailUmkm'])->name('Vie
 // ----------- PERSURATAN -----------
 Route::get('/persuratan', [PersuratanController::class, 'viewpersuratan'])->name('persuratan');
 Route::post('/submit-skck', [PersuratanController::class, 'submitSkck'])->name('submit.skck');
+Route::post('/submit-keterangan-kematian', [PersuratanController::class, 'submitKematian'])->name('submit.kematian');
+
 
 // ----------- EVENT -----------
 Route::get('/event', [EventController::class, 'viewevent'])->name('event');
@@ -59,7 +61,7 @@ Route::get('/event/eventdetail', [EventController::class, 'vieweventdetail'])->n
 Route::get('/admin', [Home::class, 'homeAdmin'])->name('homeAdmin');
 
 // ----------- PERSURATAN -----------
-Route::get('/viewSurat', [Persuratan::class, 'viewSurat'])->name('viewSuratAdmin');
+Route::get('/viewSurat', [Persuratan::class, 'viewSurat'])->name('persuratan.view');
 Route::get('/deletepersuratan/{id}', [Persuratan::class, 'destroy'])->name('persuratan.destroy');
 
 
@@ -96,3 +98,8 @@ Route::post('/inserttestimoni', [Home::class, 'inserttestimoni']);
 Route::get('/edittestimoni/{id}', [Home::class, 'edittestimoni'])->name('edittestimoni');
 Route::post('/updatetestimoni/{id}', [Home::class, 'updatetestimoni']);
 Route::get('/deletetestimoni/{id}', [Home::class, 'deletetestimoni']);
+
+// ----------- SEJARAH DESA -----------
+Route::get('/sejarahdesa', [Home::class, 'Penduduk'])->name('viewPenduduk');
+Route::get('/editpenduduk/{id}', [Home::class, 'editpenduduk'])->name('editpenduduk');
+Route::post('/updatependuduk/{id}', [Home::class, 'updatependuduk']);
