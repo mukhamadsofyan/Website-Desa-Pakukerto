@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Aduan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing\HomeController;
 use App\Http\Controllers\Landing\BlogController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 
 // ----------- HOME -----------
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/Aduan', [HomeController::class, 'aduan'])->name('aduan');
+Route::get('/Aduanwarga', [HomeController::class, 'aduan'])->name('aduan');
 Route::get('/Bansos', [HomeController::class, 'Bansos'])->name('Bansos');
 Route::get('/Darurat', [HomeController::class, 'Darurat'])->name('Darurat');
 
@@ -60,6 +61,10 @@ Route::get('/event/eventdetail', [EventController::class, 'vieweventdetail'])->n
 
 // ----------- DASHBOARD -----------
 Route::get('/admin', [Home::class, 'homeAdmin'])->name('homeAdmin');
+// ----------- ADUAN -----------
+Route::get('/viewAduan', [Aduan::class, 'viewaduan'])->name('viewaduan');
+Route::post('/storeaduan', [HomeController::class, 'storeaduan'])->name('aduan.store');
+Route::post('/acceptaduan/{id}', [Aduan::class, 'acceptAduan'])->name('acceptaduan');
 
 // ----------- PERSURATAN -----------
 Route::get('/viewSurat', [Persuratan::class, 'viewSurat'])->name('viewSuratAdmin');

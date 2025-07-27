@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\penduduk;
 use App\Models\Rt;
 use App\Models\Rw;
+use App\Models\Aduan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,23 @@ class HomeController extends Controller
     {
         // $penduduk = penduduk::all();
         return view("LandingPage.aduanwarga");
+    }
+    public function storeaduan(Request $request){
+        
+        $data=Aduan::create([
+            'nama' => $request->nama,
+            'no_hp' => $request->no_hp,
+            'kategori' => $request->kategori,
+            'isi' => $request->isi,
+            'foto' => $request->foto
+        ]);
+        if ($request->hasFile('foto')) {
+        $posterFile = $request->file('foto');
+        $posterName = time() . '_' . $posterFile->getClientOriginalName();
+        $posterFile->move(public_path('Aduan'), $posterName);
+    }
+        return back()->with('success', 'Aduan berhasil dikirim!');
+
     }
     public function Bansos()
     {

@@ -189,7 +189,7 @@
                     </a>
                 </div>
                 <div class="browse-list">
-                    <a href="/Aduan">
+                    <a href="/Aduanwarga">
                         <i class="fa-solid fa-file"></i>
                         <h4>Aduan Warga</h4>
                     </a>

@@ -116,6 +116,13 @@
                                     <span>Administrasi Persuratan</span>
                                 </a>
                             </li>
+                             <li>
+                                <a href="/viewAduan" class="waves-effect">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="badge rounded-pill bg-primary float-end"></span>
+                                    <span>Aduan Warga</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- Sidebar -->

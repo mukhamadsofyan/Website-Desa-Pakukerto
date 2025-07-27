@@ -64,25 +64,26 @@
                         <div class="blg__ct_form"> <br>
                             {{-- <h3>Leave a Reply</h3> --}}
                             {{-- <p>Your email address will not be published. Required fields are marked *</p> --}}
-                            <form class="mt-4">
+                         <form method="POST" action="{{ route('aduan.store') }}" enctype="multipart/form-data">
+                                @csrf
                                 <!-- Message input -->
                                 <div class="row mb-3">
                                     <div class="col-lg-12">
                                         <div class="form-outline">
                                             <label>Nama</label>
-                                            <input type="text" placeholder="Masukkan Nama Anda" id="form6Example1"
+                                            <input type="text" name="nama" placeholder="Masukkan Nama Anda" id="form6Example1"
                                                 class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-outline mb-3">
                                     <label>Nomor Telepon/WA</label>
-                                    <input type="email" placeholder="Masukkan Nomor HP/ Whatshapp Anda"
+                                    <input type="number" name="no_hp" placeholder="Masukkan Nomor HP/ Whatshapp Anda"
                                         id="form6Example5" class="form-control" />
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label for="kategoriPengaduan">Kategori Pengaduan</label>
-                                    <select class="form-select" id="kategoriPengaduan">
+                                    <select class="form-select" name="kategori" id="kategoriPengaduan">
                                         <option value="">-- Pilih Kategori --</option>
                                         <option value="umum">Umum</option>
                                         <option value="sosial">Sosial</option>
@@ -93,19 +94,19 @@
                                         <option value="lainnya">Lainnya</option>
                                     </select>
                                 </div>
-
                                 <div class="form-outline mb-4">
-                                    <label for="form6Example7">Pengaduan</label>
-                                    <textarea class="form-control" placeholder="Masukkan kesan, informasi, atau detail aduan Anda" id="form6Example7"
-                                        rows="4"></textarea>
+                                    <label>Isi Aduan</label>
+                                    <textarea class="form-control" name="isi" id="form6Example7" rows="4"></textarea>
                                 </div>
+
+                            
                                 <!-- Upload Foto -->
                                 <!-- Upload Foto -->
                                 <div class="mb-3">
                                     <label class="form-label">Lampiran Foto (Opsional)</label>
 
                                     <!-- Input File Hidden -->
-                                    <input type="file" id="lampiranFoto" accept="image/*" hidden>
+                                    <input type="file" id="lampiranFoto" name="foto" accept="image/*" hidden>
 
                                     <!-- Label sebagai Tombol Upload -->
                                     <label for="lampiranFoto" class="btn-upload w-100 text-start">
@@ -119,15 +120,6 @@
                                     </div>
                                 </div>
 
-
-
-
-                                <!-- 2 column grid layout with text inputs for the first and last names -->
-                                <!-- Email input -->
-
-                                <!-- Number input -->
-                                <!-- Checkbox -->
-                                <!-- Submit button -->
                                 <center><button type="submit" class="btn">Kirim Aduan</button></center> <br> <br>
                             </form>
                         </div>
