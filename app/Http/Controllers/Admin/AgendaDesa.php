@@ -21,7 +21,7 @@ class AgendaDesa extends Controller
     }
     public function insertkegiatan(Request $request)
     {
-            $posterName = null;
+        $posterName = null;
 
     if ($request->hasFile('poster_agenda')) {
         $posterFile = $request->file('poster_agenda');

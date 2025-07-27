@@ -49,8 +49,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">DATA KEPENDUDUKAN DESA PAKUKERTO</h4>
-                                    <a href="/tambahpenduduk" class="btn btn-primary">Tambah Data</a>
+                                    <h4 class="card-title">DATA RT DESA PAKUKERTO</h4>
+                                    <a href="/tambahrt" class="btn btn-primary">Tambah Data</a>
                                     {{-- <p class="card-title-desc">DataTables has most features enabled by
                                         default, so all you need to do to use it with your own tables is to call
                                         the construction function: <code>$().DataTable();</code>. --}}
@@ -60,42 +60,26 @@
                                         <thead>
                                             <tr>
                                                 <th>NO</th>
-                                                <th>Nama</th>
-                                                <th>Alamat</th>
-                                                <th>Umur</th>
-                                                <th>Dusun</th>
-                                                <th>Rw / Rt</th>
-                                                <th>Pendidikan</th>
-                                                <th>Pekerjaan</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>Agama</th>
-                                                <th>Status Perkawinan</th>
+                                                <th>Nama Dusun</th>
+                                                <th>No Rw</th>
+                                                <th>No Rt</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <?php $no = 1; ?>
-                                        @foreach ($datapenduduk as $penduduk)
+                                        @foreach ($data as $rt)
                                             <tr>
                                                 <td>{{ $no }}</td>
-                                                <td>{{ $penduduk->nama }}</td>
-                                                <td>{{ $penduduk->alamat }}</td>
-                                                <td>{{ $penduduk->umur }}</td>
-                                                <td>{{ $penduduk->dusun }}</td>
-                                                <td>{{ $penduduk->rw->no_rw }} / {{ $penduduk->rt->no_rt }}</td>
-                                                <td>{{ $penduduk->pendidikan }}</td>
-                                                <td>{{ $penduduk->pekerjaan }}</td>
-                                                <td>{{ $penduduk->jenis_kelamin }}</td>
-                                                <td>{{ $penduduk->agama }}</td> 
-                                                <td>{{ $penduduk->status_perkawinan }}</td>
+                                                <td>{{ $rt->rw->dusun}}</td>
+                                                <td>{{ $rt->rw->no_rw }}</td>
+                                                <td>{{ $rt->no_rt }}</td>
                                                 <td>
-                                                    <a href="/editpenduduk/{{ $penduduk->id }}"
+                                                    <a href="/editrt/{{ $rt->id }}"
                                                         class="btn btn-warning"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>
                                                     {{-- <a href="#" class="btn btn-danger delete" data-id="{{ $sambutan->id }}" data-sambutan="{{ $sambutan->nama }}"><i class="fa-solid fa-trash"></i></a> --}}
                                                 </td>
                                             </tr>
-
-
                                             </tbody>
                                             <?php $no++; ?>
                                         @endforeach

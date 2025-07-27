@@ -16,5 +16,5 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <!-- App Css-->
         <link href="{{ asset('assetsAdmin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     </head>
