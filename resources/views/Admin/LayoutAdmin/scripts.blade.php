@@ -67,3 +67,39 @@
         toastr.warning("{{ session('warning') }}");
     @endif
 </script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+<script>
+    flatpickr("#tanggalKegiatan", {
+        altInput: true,
+        altFormat: "d F Y",     // Tampilan user: 10 Juli 2025
+        dateFormat: "Y-m-d",    // Format yang dikirim ke backend Laravel
+        locale: "id"
+    });
+</script>
+<!-- jQuery (wajib) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery Repeater (wajib) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.inner-repeater').repeater({
+            initEmpty: false,
+            defaultValues: {
+                'phone': ''
+            },
+            show: function () {
+                $(this).slideDown();
+            },
+            hide: function (deleteElement) {
+                if (confirm('Hapus nomor ini?')) {
+                    $(this).slideUp(deleteElement);
+                }
+            },
+            isFirstItemUndeletable: true
+        });
+    });
+</script>
+

@@ -10,6 +10,10 @@
 <script src="{{ asset('LandingPageOri/assets/js/main.js') }}"></script>
 <script src="{{ asset('LandingPageOri/assets/js/custom-swiper.js') }}"></script>
 <script src="{{ asset('LandingPageOri/assets/js/custom-nav.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+
+
 
 <!-- Cloudflare Beacon -->
 <script defer

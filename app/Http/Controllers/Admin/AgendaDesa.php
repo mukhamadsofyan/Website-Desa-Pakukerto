@@ -10,7 +10,8 @@ class AgendaDesa extends Controller
 {
     public function AgendaDesa()
     {
-        $data = Agenda::all();
+        $data = Agenda::latest()->get();
+
         // Logic for the agenda desa page
         return view('Admin.Agenda.Agendadesa', compact('data'));
     }

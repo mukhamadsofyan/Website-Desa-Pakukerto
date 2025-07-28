@@ -25,12 +25,12 @@
                 <div class="h2-slider-list sl-overlay"
                     style="background-image: url({{ asset('LandingPageOri/assets/images/banner/final.png') }});height:44pc">
                 </div>
-                <div class="h2-slider-list sl-overlay"
+                {{-- <div class="h2-slider-list sl-overlay"
                     style="background-image: url({{ asset('LandingPageOri/assets/images/banner/slider2.png') }});height:44pc" >
                 </div>
                 <div class="h2-slider-list sl-overlay"
                     style="background-image: url({{ asset('LandingPageOri/assets/images/banner/2.png') }});height:44pc">
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -138,7 +138,7 @@
     <section class="counter">
 
         <div class="container">
-          
+
             <div class="counter-wrap wow fadeInUp">
                 <div class="content d-flex justify-content-between">
                     <div class="value-pin">
@@ -159,7 +159,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </section>
     <!-- End Counter main -->
@@ -887,7 +887,7 @@
     <!--  Newsletter start -->
 
     <!--  Newsletter end -->
-    
+
     <!-- Footer starts -->
     @include('LandingPage.Layout.footer')
     <!-- Footer ends -->

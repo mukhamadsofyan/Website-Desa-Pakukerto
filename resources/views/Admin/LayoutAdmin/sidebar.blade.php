@@ -44,7 +44,7 @@
                                     <span>Penduduk</span>
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="/testimonial">
                                     <i class="uil-home-alt"></i><span class="badge rounded-pill bg-primary float-end"></span>
@@ -60,13 +60,10 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="/sambutanKades">Sambutan Kades</a></li>
                                     <li><a href="/Penduduk">Penduduk</a></li>
-<<<<<<< HEAD
                                     <li><a href="/struktural">Struktural Desa</a></li>
-=======
                                     <li><a href="/Rw">Rw</a></li>
                                     <li><a href="/Rt">Rt</a></li>
                                     <li><a href="#">Struktural Desa</a></li>
->>>>>>> 46bc874f3a0a219d759c27a97c1d127669e08e6b
                                     <li><a href="/testimonial">Testimonial</a></li>
                                 </ul>
                             </li>
@@ -86,7 +83,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript: void(0);" class="waves-effect">
+                                <a href="/viewUmkm" class="waves-effect">
                                     <i class="fas fa-store"></i>
                                     <span class="badge rounded-pill bg-primary float-end"></span>
                                     <span>UMKM</span>

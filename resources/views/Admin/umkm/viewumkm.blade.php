@@ -49,9 +49,9 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Data Kegiatan Desa</h4>
-                                    <a href="/tambahagendadesa"><button class="btn btn-primary"> Tambah Data
-                                            Kegiatan</button></a>
+                                    <h4 class="card-title">Data UMKM Desa</h4>
+                                    <a href="/tambahUmkm"><button class="btn btn-primary"> Tambah Data
+                                            UMKM</button></a>
                                     {{-- <p class="card-title-desc">DataTables has most features enabled by
                                         default, so all you need to do to use it with your own tables is to call
                                         the construction function: <code>$().DataTable();</code>. --}}
@@ -61,52 +61,56 @@
                                         <thead>
                                             <tr>
                                                 <th>NO</th>
-                                                <th>Nama Agenda</th>
-                                                <th>Tanggal Agenda</th>
-                                                <th>Jam Agenda</th>
-                                                <th>Lokasi</th>
-                                                <th>Deskripsi Kegiatan</th>
+                                                <th>Nama UMKM</th>
+                                                <th>Nama Pemilik UMKM</th>
+                                                <th>Berdiri UMKM</th>
+                                                <th>Tagline UMKM</th>
+                                                <th>Lokasi UMKM</th>
+                                                <th>Deskripsi UMKM</th>
+                                                <th>Varian Produk</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
-                                        @php
-                                            use Carbon\Carbon;
-                                            $no = 1;
-                                        @endphp
+                                        <tbody>
+                                            @php $no = 1; @endphp
+                                            @foreach ($data as $umkm)
+                                                <tr>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $umkm->nama_umkm }}</td>
+                                                    <td>{{ $umkm->nama_pemilik  }}</td>
+                                                    <!-- Jika belum tersedia -->
+                                                    <td>{{ $umkm->tahun_berdiri }}</td>
+                                                    <td>{{ $umkm->tagline }}</td>
+                                                    <td>{{ $umkm->alamat }}</td>
+                                                    <td>{{ Str::limit($umkm->deskripsi, 50) }}</td>
+                                                    <td>
+                                                        @if (is_array($umkm->produk))
+                                                            <ul class="mb-0">
+                                                                @foreach ($umkm->produk as $produk)
+                                                                    <li>{{ $produk }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @else
+                                                            <ul class="mb-0">
+                                                                @foreach (json_decode($umkm->produk, true) ?? [] as $produk)
+                                                                    <li>{{ $produk }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="/editUmkm/{{ $umkm->id }}" class="btn btn-warning">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-danger btn-hapusumkm"
+                                                            data-id="{{ $umkm->id }}">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
 
-                                        @foreach ($data as $agenda)
-                                            <tr>
-                                                <td>{{ $no }}</td>
-                                                <td>{{ $agenda->nama_agenda }}</td>
-
-                                                {{-- Tampilkan tanggal dengan format lokal --}}
-                                                <td>{{$agenda->tanggal_agenda}}
-                                                </td>
-
-                                                <td>{{ $agenda->lokasi_agenda }}</td>
-                                                <td>{{ $agenda->deskripsi_agenda }}</td>
-
-                                                {{-- Poster --}}
-                                                <td>
-                                                    <img src="{{ asset('AgendaDesa/' . $agenda->poster_agenda) }}"
-                                                        alt="" style="width: 80px; height: 80px;">
-                                                </td>
-
-                                                {{-- Aksi --}}
-                                                <td>
-                                                    <a href="/editagenda/{{ $agenda->id }}" class="btn btn-warning">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </a>
-                                                    <a href="#" class="btn btn-danger btn-delete"
-                                                        data-id="{{ $agenda->id }}">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @php $no++; @endphp
-                                        @endforeach
-
-                                    </table>
 
                                 </div>
                             </div>
@@ -282,7 +286,7 @@
                 buttonsStyling: false
             });
 
-            document.querySelectorAll('.btn-delete').forEach(function(button) {
+            document.querySelectorAll('.btn-hapusumkm').forEach(function(button) {
                 button.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
 
@@ -297,7 +301,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Lakukan penghapusan, misalnya redirect ke route destroy
-                            window.location.href = "/deleteagenda/" + id;
+                            window.location.href = "/deleteumkm/" + id;
                         } else if (result.dismiss === Swal.DismissReason.cancel) {
                             swalWithBootstrapButtons.fire(
                                 "Dibatalkan",

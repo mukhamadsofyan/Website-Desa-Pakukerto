@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AgendaDesa;
 use App\Http\Controllers\Admin\Persuratan;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\strukturaldesa;
+use App\Http\Controllers\Admin\Umkm;
 
 // ==========================================
 // LANDING ROUTES (Frontend)
@@ -112,6 +113,14 @@ Route::get('/deleterw/{id}', [Home::class, 'deleterw']);
 
 
 
+////////////////// ----------- UMKM DESA ----------- /////////////////////
+Route::get('/viewUmkm', [Umkm::class, 'UmkmDesa'])->name('viewUmkmDesa');
+Route::get('/tambahUmkm', [Umkm::class, 'tambahUmkm'])->name('viewtambahUmkm');
+Route::post('/insertUmkm', [Umkm::class, 'insertUmkm']);
+Route::get('/editUmkm/{id}', [Umkm::class, 'editUmkm'])->name('editUmkm');
+Route::post('/updateUmkm/{id}', [Umkm::class, 'updateUmkm']);
+Route::get('/deleteUmkm/{id}', [Umkm::class, 'deleteumkm'])->name('umkmdelete');
+
 // ----------- AGENDA DESA -----------
 Route::get('/Agenda', [AgendaDesa::class, 'AgendaDesa'])->name('viewAgendaDesa');
 Route::get('/tambahagendadesa', [AgendaDesa::class, 'tambahagendadesa'])->name('viewtambahagendadesa');
@@ -129,12 +138,6 @@ Route::post('/updatetestimoni/{id}', [Home::class, 'updatetestimoni']);
 Route::get('/deletetestimoni/{id}', [Home::class, 'deletetestimoni']);
 
 //////////////// ----------- Struktural ----------- /////////////////////////////
-Route::get('/struktural', [strukturaldesa::class, 'strukturalDesa'])->name('viewstrukturalDesa');
-Route::get('/tambahstruktural', [strukturaldesa::class, 'tambahstruktural'])->name('viewtambahstruktural');
-Route::post('/insertstruktural', [strukturaldesa::class, 'insertstruktural']);
-Route::get('/editstruktural/{id}', [strukturaldesa::class, 'editstruktural'])->name('editstruktural');
-Route::post('/updatestruktural/{id}', [strukturaldesa::class, 'updatestruktural']);
-Route::get('/deletestruktural/{id}', [strukturaldesa::class, 'deletestruktural']);
 Route::post('/accepttestimonial/{id}', [Home::class, 'accepttestimonial']);
 Route::post('/rejecttestimonial/{id}', [Home::class, 'rejecttestimonial']);
 

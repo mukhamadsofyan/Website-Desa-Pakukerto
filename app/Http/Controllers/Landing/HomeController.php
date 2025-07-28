@@ -14,18 +14,14 @@ class HomeController extends Controller
 {
     public function home()
     {
-<<<<<<< HEAD
-        $penduduk = penduduk::all();
+        // $penduduk = penduduk::all();
         $agenda = Agenda::all();
-        return view("LandingPage.home", compact('penduduk','agenda'));
-=======
         $penduduk = penduduk::count();
         $dusun = penduduk::distinct('dusun')->count('dusun');
         $rw = Rw::count();
         $rt = Rt::count();
-
-        return view("LandingPage.home", compact('penduduk','dusun' ,'rw' , 'rt'));
->>>>>>> 46bc874f3a0a219d759c27a97c1d127669e08e6b
+        // return view("LandingPage.home", compact('penduduk','agenda'));
+        return view("LandingPage.home", compact('penduduk','agenda','dusun' ,'rw' , 'rt'));
     }
     public function aduan()
     {
@@ -33,7 +29,7 @@ class HomeController extends Controller
         return view("LandingPage.aduanwarga");
     }
     public function storeaduan(Request $request){
-        
+
         $data=Aduan::create([
             'nama' => $request->nama,
             'no_hp' => $request->no_hp,
