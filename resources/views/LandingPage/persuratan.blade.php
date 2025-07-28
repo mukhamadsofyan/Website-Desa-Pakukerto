@@ -162,6 +162,120 @@
                                     <div id="collapsePersurat2" class="collapse" role="tabpanel"
                                         aria-labelledby="headingPersurat2" data-parent="#accordionPersuratan">
                                         <div class="card-body">
+                                            <form class="mt-4" action="{{ route('submit.keramaian') }}"
+                                                method="POST">
+                                                @csrf
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputNama">Nama Lengkap</label>
+                                                        <input type="text" id="inputNama" name="nama_lengkap"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Masukkan nama lengkap" required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputTempatLahir">Tempat Lahir</label>
+                                                        <input type="text" id="inputTempatLahir"
+                                                            name="tempat_lahir" class="form-control form-shadow"
+                                                            placeholder="Contoh: Surabaya" required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputTanggalLahir">Tanggal Lahir</label>
+                                                        <input type="date" id="inputTanggalLahir"
+                                                            name="tanggal_lahir" class="form-control form-shadow"
+                                                            required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputJenisKelamin">Jenis Kelamin</label>
+                                                        <select id="inputJenisKelamin" name="jenis_kelamin"
+                                                            class="form-control form-shadow" required>
+                                                            <option value="" disabled selected>Pilih jenis
+                                                                kelamin</option>
+                                                            <option>Laki-laki</option>
+                                                            <option>Perempuan</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputAgama">Agama</label>
+                                                        <input type="text" id="inputAgama" name="agama"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Islam" required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputNIK">NIK</label>
+                                                        <input type="text" id="inputNIK" name="nik"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Masukkan NIK" required>
+                                                    </div>
+
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label for="inputAlamat">Alamat Lengkap</label>
+                                                        <textarea id="inputAlamat" name="alamat_lengkap" class="form-control form-shadow" rows="3"
+                                                            placeholder="Masukkan alamat lengkap" required></textarea>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputNoHP">No HP</label>
+                                                        <input type="text" id="inputNoHP" name="no_hp"
+                                                            class="form-control form-shadow"
+                                                            placeholder="08xxxxxxxxxx" required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputHariAcara">Hari Acara</label>
+                                                        <input type="text" id="inputHariAcara" name="hari_acara"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Minggu" required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputTanggalAcara">Tanggal Acara</label>
+                                                        <input type="date" id="inputTanggalAcara"
+                                                            name="tanggal_acara" class="form-control form-shadow"
+                                                            required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputJamAcara">Jam Acara</label>
+                                                        <input type="text" id="inputJamAcara" name="jam_acara"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: 19.00 WIB - Selesai" required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputJenisKeramaian">Jenis Keramaian</label>
+                                                        <input type="text" id="inputJenisKeramaian"
+                                                            name="jenis_keramaian" class="form-control form-shadow"
+                                                            placeholder="Contoh: Dangdutan, Pengajian" required>
+                                                    </div>
+
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label for="inputKeperluan">Keperluan</label>
+                                                        <input type="text" id="inputKeperluan" name="keperluan"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Ulang Tahun, Hajatan" required>
+                                                    </div>
+
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label for="inputLokasiAcara">Lokasi Acara</label>
+                                                        <textarea id="inputLokasiAcara" name="lokasi_acara" class="form-control form-shadow" rows="2"
+                                                            placeholder="Masukkan lokasi lengkap acara" required></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <button type="submit"
+                                                            class="btn btn-primary btn-surat px-5 py-2 mt-3 shadow-sm">
+                                                            Ajukan Permohonan
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
 
                                         </div>
                                     </div>
@@ -178,46 +292,131 @@
                                     <div id="collapsePersurat3" class="collapse" role="tabpanel"
                                         aria-labelledby="headingPersurat3" data-parent="#accordionPersuratan">
                                         <div class="card-body">
-                                            <form class="mt-4">
-                                                <div class="form-outline mb-4">
-                                                    <label for="formKeteranganPersurat3">Keterangan</label>
-                                                    <textarea class="form-control form-shadow" id="formKeteranganPersurat3" rows="4"></textarea>
+                                            <form action="{{ route('submit.kelahiran') }}" method="POST"
+                                                class="mt-4">
+                                                @csrf
+
+                                                <h5 class="mb-3">Data Anak</h5>
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nama_anak">Nama Lengkap Anak *</label>
+                                                        <input type="text" name="nama_anak"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: AKHMAD IQBAL HAKIM">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="anak_ke">Anak ke *</label>
+                                                        <input type="text" name="anak_ke"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: 1 (Satu)">
+                                                    </div>
                                                 </div>
 
                                                 <div class="row mb-3">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formNamaPersurat3">Nama Lengkap *</label>
-                                                            <input type="text" id="formNamaPersurat3"
-                                                                class="form-control form-shadow">
-                                                        </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="ttl_anak">Tempat/Tanggal Lahir Anak *</label>
+                                                        <input type="text" name="ttl_anak"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: Pasuruan, 23/08/2023">
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formEmailPersurat3">Email *</label>
-                                                            <input type="email" id="formEmailPersurat3"
-                                                                class="form-control form-shadow">
-                                                        </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="alamat_anak">Alamat Anak *</label>
+                                                        <input type="text" name="alamat_anak"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: Dusun Gendol RT 003 RW 004 Desa Pakukerto">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="penolong">Penolong Kelahiran</label>
+                                                        <input type="text" name="penolong"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Bidan Sri Wahyuni / - jika tidak ada">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="alamat_penolong">Alamat Penolong</label>
+                                                        <input type="text" name="alamat_penolong"
+                                                            class="form-control form-shadow"
+                                                            placeholder="Contoh: Dusun Krajan RT 001 RW 001 Desa Pakukerto">
+                                                    </div>
+                                                </div>
+
+                                                <hr class="my-4">
+                                                <h5 class="mb-3">Data Ibu</h5>
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nik_ibu">NIK Ibu *</label>
+                                                        <input type="text" name="nik_ibu"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: 3514094312020004">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nama_ibu">Nama Ibu *</label>
+                                                        <input type="text" name="nama_ibu"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: RINA JULIATI">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-outline">
-                                                            <label for="formTeleponPersurat3">No.
-                                                                Telepon/WhatsApp</label>
-                                                            <input type="text" id="formTeleponPersurat3"
-                                                                class="form-control form-shadow">
-                                                        </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="ttl_ibu">Tempat/Tanggal Lahir Ibu *</label>
+                                                        <input type="text" name="ttl_ibu"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: Pasuruan, 03/12/2002">
                                                     </div>
-                                                    <div class="col-lg-6 text-center">
-                                                        <div class="form-outline">
-                                                            <button type="submit"
-                                                                class="btn btn-primary btn-surat mt-3">Ajukan
-                                                                Permohonan</button>
-                                                        </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="alamat_ibu">Alamat Ibu *</label>
+                                                        <input type="text" name="alamat_ibu"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: Dusun Gendol RT 003 RW 004 Desa Pakukerto">
                                                     </div>
                                                 </div>
+
+                                                <hr class="my-4">
+                                                <h5 class="mb-3">Data Ayah</h5>
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nik_ayah">NIK Ayah *</label>
+                                                        <input type="text" name="nik_ayah"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: 3514090808000002">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="nama_ayah">Nama Ayah *</label>
+                                                        <input type="text" name="nama_ayah"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: AHMAD RIFA’I">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="ttl_ayah">Tempat/Tanggal Lahir Ayah *</label>
+                                                        <input type="text" name="ttl_ayah"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: Pasuruan, 15/01/2000">
+                                                    </div>
+                                                    <div class="col-lg-6 mt-3">
+                                                        <label for="alamat_ayah">Alamat Ayah *</label>
+                                                        <input type="text" name="alamat_ayah"
+                                                            class="form-control form-shadow" required
+                                                            placeholder="Contoh: Dusun Gendol RT 001 RW 004 Desa Pakukerto">
+                                                    </div>
+                                                </div>
+
+                                                <hr class="my-4">
+                                                <div class="form-outline mb-4">
+                                                    <label for="keperluan">Keperluan *</label>
+                                                    <textarea name="keperluan" class="form-control form-shadow" rows="3" required
+                                                        placeholder="Contoh: Untuk pengurusan administrasi kependudukan ke Disdukcapil."></textarea>
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary btn-surat">Ajukan
+                                                        Permohonan</button>
+                                                </div>
                                             </form>
+
                                         </div>
                                     </div>
                                 </div>

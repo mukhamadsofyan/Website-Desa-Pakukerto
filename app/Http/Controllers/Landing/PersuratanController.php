@@ -51,7 +51,7 @@ class PersuratanController extends Controller
             $templateProcessor->setValue('Pekerjaan', $validatedData['pekerjaan']);
             $templateProcessor->setValue('Pendidikan', $validatedData['pendidikan']);
             $templateProcessor->setValue('Alamat', $validatedData['alamat_lengkap']);
-            $templateProcessor->setValue('tanggal', Carbon::now()->translatedFormat('d F Y'));
+            $templateProcessor->setValue('tgl_surat', Carbon::now()->translatedFormat('d F Y'));
 
             // Simpan file ke storage/app/public/surat
             $outputFileName = 'Surat_SKCK_' . time() . '.docx';
@@ -186,6 +186,175 @@ class PersuratanController extends Controller
             return redirect()->back()->with('success', 'Permohonan Surat Keterangan Kematian berhasil dikirim.');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        }
+    }
+
+    public function submitKelahiran(Request $request)
+    {
+        // dd($request->all()); // Debugging untuk melihat data yang dikirim
+        $validatedData = $request->validate([
+            'nama_anak'       => 'required|string|max:255',
+            'anak_ke'         => 'required|string|max:255',
+            'ttl_anak'        => 'required|string|max:255',
+            'alamat_anak'     => 'required|string|max:255',
+            'penolong'        => 'nullable|string|max:255',
+            'alamat_penolong' => 'nullable|string|max:255',
+
+            'nik_ibu'         => 'required|string|max:255',
+            'nama_ibu'        => 'required|string|max:255',
+            'ttl_ibu'         => 'required|string|max:255',
+            'alamat_ibu'      => 'required|string|max:255',
+
+            'nik_ayah'        => 'required|string|max:255',
+            'nama_ayah'       => 'required|string|max:255',
+            'ttl_ayah'        => 'required|string|max:255',
+            'alamat_ayah'     => 'required|string|max:255',
+
+            'keperluan'       => 'required|string|max:255',
+        ]);
+
+        // Path template surat kelahiran
+        $templateFile = 'SURAT KETERANGAN KELAHIRAN.docx';
+        $templatePath = storage_path('app/templates/' . $templateFile);
+
+        if (!file_exists($templatePath)) {
+            return back()->withErrors(['template' => 'Template surat tidak ditemukan!']);
+        }
+
+        try {
+            $templateProcessor = new TemplateProcessor($templatePath);
+
+            // Set value ke template
+            $templateProcessor->setValue('nama_anak', $validatedData['nama_anak']);
+            $templateProcessor->setValue('anak_ke', $validatedData['anak_ke']);
+            $templateProcessor->setValue('ttl_anak', $validatedData['ttl_anak']);
+            $templateProcessor->setValue('alamat_anak', $validatedData['alamat_anak']);
+            $templateProcessor->setValue('penolong', $validatedData['penolong'] ?? '-');
+            $templateProcessor->setValue('alamat_penolong', $validatedData['alamat_penolong'] ?? '-');
+
+            $templateProcessor->setValue('nik_ibu', $validatedData['nik_ibu']);
+            $templateProcessor->setValue('nama_ibu', $validatedData['nama_ibu']);
+            $templateProcessor->setValue('ttl_ibu', $validatedData['ttl_ibu']);
+            $templateProcessor->setValue('alamat_ibu', $validatedData['alamat_ibu']);
+
+            $templateProcessor->setValue('nik_ayah', $validatedData['nik_ayah']);
+            $templateProcessor->setValue('nama_ayah', $validatedData['nama_ayah']);
+            $templateProcessor->setValue('ttl_ayah', $validatedData['ttl_ayah']);
+            $templateProcessor->setValue('alamat_ayah', $validatedData['alamat_ayah']);
+
+            $templateProcessor->setValue('keperluan', $validatedData['keperluan']);
+            $templateProcessor->setValue('tgl_surat', Carbon::now()->translatedFormat('d F Y'));
+
+            // Simpan file surat
+            $outputFileName = 'Surat_Kelahiran_' . time() . '.docx';
+            $savePath = storage_path('app/public/surat/' . $outputFileName);
+
+            if (!file_exists(dirname($savePath))) {
+                mkdir(dirname($savePath), 0775, true);
+            }
+
+            $templateProcessor->saveAs($savePath);
+
+            // Simpan ke database
+            PermohonanSurat::create([
+                'nama_lengkap' => $validatedData['nama_anak'],
+                'nik'          => $validatedData['nik_ibu'], // atau bisa juga nik ayah
+                'jenis_surat'  => 'Surat Keterangan Kelahiran',
+                'file_surat'   => 'surat/' . $outputFileName,
+                'data_lainnya' => json_encode($validatedData),
+            ]);
+
+            return redirect()->back()->with('success', 'Permohonan Surat Kelahiran berhasil dikirim!');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Terjadi kesalahan saat membuat surat: ' . $e->getMessage()]);
+        }
+    }
+
+    public function submitKeramaian(Request $request)
+    {
+        // Validasi input user
+        $validatedData = $request->validate([
+            'nama_lengkap'     => 'required|string|max:255',
+            'tempat_lahir'     => 'required|string|max:255',
+            'tanggal_lahir'    => 'required|date',
+            'jenis_kelamin'    => 'required|string|max:20',
+            'agama'            => 'required|string|max:50',
+            'nik'              => 'required|string|max:20',
+            'alamat_lengkap'   => 'required|string|max:255',
+            'no_hp'            => 'required|string|max:20',
+            'hari_acara'       => 'required|string|max:50',
+            'tanggal_acara'    => 'required|date',
+            'jam_acara'        => 'required|string|max:50',
+            'jenis_keramaian'  => 'required|string|max:100',
+            'keperluan'        => 'required|string|max:255',
+            'lokasi_acara'     => 'required|string|max:255',
+        ]);
+
+        // Cek template Word
+        $templateDocxFileName = 'SURAT PERMOHONAN IZIN KERAMAIAN.docx';
+        $templateDocxPath = storage_path('app/templates/' . $templateDocxFileName);
+
+        if (!file_exists($templateDocxPath)) {
+            return back()->withErrors(['template' => 'Template surat tidak ditemukan!']);
+        }
+
+        try {
+            // Format TTL
+            $ttl = $validatedData['tempat_lahir'] . ', ' . Carbon::parse($validatedData['tanggal_lahir'])->translatedFormat('d F Y');
+
+            // Proses isi template
+            $templateProcessor = new TemplateProcessor($templateDocxPath);
+            $templateProcessor->setValue('nama', $validatedData['nama_lengkap']);
+            $templateProcessor->setValue('ttl', $ttl);
+            $templateProcessor->setValue('jenis_kelamin', $validatedData['jenis_kelamin']);
+            $templateProcessor->setValue('agama', $validatedData['agama']);
+            $templateProcessor->setValue('nik', $validatedData['nik']);
+            $templateProcessor->setValue('alamat', $validatedData['alamat_lengkap']);
+            $templateProcessor->setValue('no_hp', $validatedData['no_hp']);
+            $templateProcessor->setValue('hari_acara', $validatedData['hari_acara']);
+            $templateProcessor->setValue('tanggal_acara', Carbon::parse($validatedData['tanggal_acara'])->translatedFormat('d F Y'));
+            $templateProcessor->setValue('jam_acara', $validatedData['jam_acara']);
+            $templateProcessor->setValue('jenis_keramaian', $validatedData['jenis_keramaian']);
+            $templateProcessor->setValue('keperluan', $validatedData['keperluan']);
+            $templateProcessor->setValue('lokasi_acara', $validatedData['lokasi_acara']);
+            $templateProcessor->setValue('tanggal', Carbon::now()->translatedFormat('d F Y'));
+            $templateProcessor->setValue('tgl_surat', Carbon::now()->translatedFormat('d F Y'));
+
+            // Simpan file ke storage
+            $outputFileName = 'Surat_Keramaian_' . time() . '.docx';
+            $savePath = storage_path('app/public/surat/' . $outputFileName);
+
+            if (!file_exists(dirname($savePath))) {
+                mkdir(dirname($savePath), 0775, true);
+            }
+
+            $templateProcessor->saveAs($savePath);
+
+            // Simpan ke database
+            PermohonanSurat::create([
+                'nama_lengkap'  => $validatedData['nama_lengkap'],
+                'nik'           => $validatedData['nik'],
+                'jenis_surat'   => 'Izin Keramaian',
+                'file_surat'    => 'surat/' . $outputFileName,
+                'data_lainnya'  => json_encode([
+                    'tempat_lahir'    => $validatedData['tempat_lahir'],
+                    'tanggal_lahir'   => $validatedData['tanggal_lahir'],
+                    'jenis_kelamin'   => $validatedData['jenis_kelamin'],
+                    'agama'           => $validatedData['agama'],
+                    'alamat_lengkap'  => $validatedData['alamat_lengkap'],
+                    'no_hp'           => $validatedData['no_hp'],
+                    'hari_acara'      => $validatedData['hari_acara'],
+                    'tanggal_acara'   => $validatedData['tanggal_acara'],
+                    'jam_acara'       => $validatedData['jam_acara'],
+                    'jenis_keramaian' => $validatedData['jenis_keramaian'],
+                    'keperluan'       => $validatedData['keperluan'],
+                    'lokasi_acara'    => $validatedData['lokasi_acara'],
+                ]),
+            ]);
+
+            return redirect()->back()->with('success', 'Permohonan surat izin keramaian berhasil dikirim. Silakan tunggu konfirmasi dari admin.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Terjadi kesalahan saat membuat surat: ' . $e->getMessage()]);
         }
     }
 }

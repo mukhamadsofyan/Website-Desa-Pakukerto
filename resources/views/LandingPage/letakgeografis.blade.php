@@ -18,15 +18,14 @@
     </section>
     <section class="home-2 packages">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 mb-4 text-center">
+            <div class="map-container">
+                <div class="map-wrapper">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26069.26444533244!2d112.68584829536974!3d-7.722518030077664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7d6d1cb7927af%3A0x2572fe71bc723997!2sPakukerto%2C%20Kec.%20Sukorejo%2C%20Pasuruan%2C%20Jawa%20Timur!5e1!3m2!1sid!2sid!4v1752473890035!5m2!1sid!2sid"
-                        width="1100" height="450" style="border: 0" allowfullscreen=""
-                        loading="lazy"></iframe>
+                        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
-
             <div class="row mt-4">
                 <div class="col-lg-6 col-md-12 mb-4">
                     <div class="pkg-container bg-white h-100 d-flex flex-column">

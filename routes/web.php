@@ -51,6 +51,8 @@ Route::get('/umkm/detail', [UmkmController::class, 'ViewDetailUmkm'])->name('Vie
 Route::get('/persuratan', [PersuratanController::class, 'viewpersuratan'])->name('persuratan');
 Route::post('/submit-skck', [PersuratanController::class, 'submitSkck'])->name('submit.skck');
 Route::post('/submit-keterangan-kematian', [PersuratanController::class, 'submitKematian'])->name('submit.kematian');
+Route::post('/submit-kelahiran', [PersuratanController::class, 'submitKelahiran'])->name('submit.kelahiran');
+Route::post('/submit-keramaian', [PersuratanController::class, 'submitKeramaian'])->name('submit.keramaian');
 
 
 // ----------- EVENT -----------
@@ -143,5 +145,5 @@ Route::post('/rejecttestimonial/{id}', [Home::class, 'rejecttestimonial']);
 
 // ----------- SEJARAH DESA -----------
 Route::get('/sejarahdesa', [Home::class, 'Penduduk'])->name('viewPenduduk');
-Route::get('/editpenduduk/{id}', [Home::class, 'editpenduduk'])->name('editpenduduk');
-Route::post('/updatependuduk/{id}', [Home::class, 'updatependuduk']);
+Route::get('/sejarahdesa/{id}', [Home::class, 'editpenduduk'])->name('editpenduduk');
+Route::post('/updatesejarah/{id}', [Home::class, 'updatependuduk']);
