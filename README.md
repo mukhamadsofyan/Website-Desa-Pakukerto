@@ -7,55 +7,279 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+<p align="center">
+  <img src="LandingPage/images/logo_bumdes.png" width="160" alt="Logo Desa Pakukerto">
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h1 align="center">Website Desa Pakukerto</h1>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center">
+  Sistem informasi desa berbasis Laravel untuk menyediakan layanan digital bagi masyarakat Desa Pakukerto.
+</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-Framework-red">
+  <img src="https://img.shields.io/badge/PHP-8.x-blue">
+  <img src="https://img.shields.io/badge/MySQL-Database-orange">
+  <img src="https://img.shields.io/badge/Status-Portfolio-green">
+  <img src="https://img.shields.io/badge/Maintained-Yes-brightgreen">
+</p>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# 📌 Project Overview
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Website Desa Pakukerto** adalah aplikasi web berbasis **Laravel** yang dikembangkan untuk membantu digitalisasi layanan desa dan memberikan akses informasi yang lebih mudah kepada masyarakat.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Sistem ini menyediakan berbagai fitur seperti:
 
-## Laravel Sponsors
+* Informasi desa
+* Persuratan online
+* Informasi UMKM desa
+* Agenda kegiatan desa
+* Blog / berita desa
+* Aduan masyarakat
+* Data demografi desa
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Website ini bertujuan untuk meningkatkan **transparansi, pelayanan publik, dan akses informasi** bagi masyarakat Desa Pakukerto.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# 🚀 Features
 
-## Contributing
+## 🌐 Landing Page
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Halaman utama yang dapat diakses oleh masyarakat.
 
-## Code of Conduct
+Fitur:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* Profil desa
+* Berita dan informasi desa
+* Event atau kegiatan desa
+* Informasi layanan desa
+* Kontak desa
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🏛 Profil Desa
 
-## License
+Informasi lengkap mengenai desa:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* Sejarah desa
+* Visi dan misi desa
+* Struktur kelembagaan desa
+* Letak geografis
+* Demografi penduduk
+* Potensi desa
+
+---
+
+## 🧾 Persuratan Online
+
+Masyarakat dapat mengajukan surat secara online.
+
+Jenis surat yang tersedia:
+
+* Surat SKCK
+* Surat keterangan kematian
+* Surat keterangan kelahiran
+* Surat izin keramaian
+
+Admin desa dapat memproses dan mengelola permohonan surat.
+
+---
+
+## 🛍 UMKM Desa
+
+Fitur untuk menampilkan usaha masyarakat desa.
+
+Fitur:
+
+* Daftar UMKM
+* Detail UMKM
+* Informasi produk atau layanan
+
+---
+
+## 📅 Agenda Desa
+
+Informasi kegiatan atau event desa.
+
+Fitur:
+
+* Daftar agenda desa
+* Detail agenda
+* Pengelolaan agenda oleh admin
+
+---
+
+## 📰 Blog / Berita Desa
+
+Website menyediakan informasi berita desa.
+
+Fitur:
+
+* Artikel berita
+* Detail artikel
+* Manajemen artikel oleh admin
+
+---
+
+## 📣 Aduan Warga
+
+Masyarakat dapat menyampaikan aduan atau laporan.
+
+Fitur:
+
+* Pengiriman aduan
+* Moderasi oleh admin
+* Persetujuan atau penolakan aduan
+
+---
+
+## 📊 Dashboard Admin
+
+Admin desa dapat mengelola seluruh konten website.
+
+Fitur utama:
+
+* Manajemen blog
+* Manajemen agenda desa
+* Manajemen UMKM
+* Manajemen data penduduk
+* Manajemen RT / RW
+* Manajemen testimoni
+* Moderasi aduan masyarakat
+* Pengelolaan persuratan
+
+---
+
+# 🧰 Tech Stack
+
+| Technology           | Description             |
+| -------------------- | ----------------------- |
+| Laravel              | Backend Framework       |
+| PHP                  | Server-side Programming |
+| MySQL                | Database                |
+| Blade                | Template Engine         |
+| Bootstrap / Tailwind | UI Framework            |
+
+---
+
+# 📁 Project Structure
+
+Simplified Laravel structure:
+
+```
+app/
+database/
+public/
+resources/
+routes/
+```
+
+---
+
+# ⚙️ Installation
+
+### 1 Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+---
+
+### 2 Masuk ke Folder Project
+
+```bash
+cd pakukerto-website
+```
+
+---
+
+### 3 Install Dependencies
+
+```bash
+composer install
+```
+
+---
+
+### 4 Copy File Environment
+
+```bash
+cp .env.example .env
+```
+
+---
+
+### 5 Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+---
+
+### 6 Setup Database
+
+Edit file `.env`
+
+```
+DB_DATABASE=pakukerto
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+### 7 Run Migration
+
+```bash
+php artisan migrate
+```
+
+---
+
+### 8 Run Server
+
+```bash
+php artisan serve
+```
+
+Website akan berjalan di:
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+# 👨‍💻 Contributors
+
+Project ini dikembangkan oleh:
+
+**Mukhamad Sofyan**
+https://github.com/mukhamadsofyan
+
+**Zaki Almukhtarom**
+https://github.com/Jukiks45
+
+
+---
+
+# 🎯 Portfolio Purpose
+
+Project ini dibuat untuk:
+
+* Mengembangkan sistem informasi desa berbasis web
+* Meningkatkan pelayanan digital kepada masyarakat
+* Menerapkan teknologi Laravel pada proyek nyata
+* Menjadi bagian dari portfolio pengembangan web
+
+---
+
+# 📄 License
+
+Project ini dibuat untuk **tujuan edukasi dan portfolio pengembangan software**.
